@@ -48,10 +48,28 @@ public class PlayerController : MonoBehaviour
         float moveDistance = player.moveSpeed * Time.deltaTime;
         bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirection, moveDistance);
 
+        if (!canMove)
+        {
+            Vector3 moveDirectionX = new Vector3(moveDirection.x, 0, 0).normalized;
+            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirectionX, moveDistance);
+
+            if (canMove)
+                moveDirection = moveDirectionX;
+            else
+            {
+                Vector3 moveDirectionZ = new Vector3(0, 0, moveDirection.z).normalized;
+                canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirectionZ, moveDistance);
+
+                if (canMove)
+                    moveDirection = moveDirectionZ;
+            }
+        }
+
+        IsWalking = moveDirection != Vector3.zero;
+
         if (canMove)
             transform.position += moveDirection * moveDistance;
 
-        IsWalking = moveDirection != Vector3.zero;
 
         transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * player.rotationSpeed);
     }
