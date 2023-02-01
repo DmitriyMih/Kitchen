@@ -5,12 +5,6 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Data")]
     [SerializeField] private Player player;
-    public PlayerController() { }
-    public PlayerController(float moveSpeed, float rotationSpeed)
-    {
-        player.moveSpeed = moveSpeed;
-        player.rotationSpeed = rotationSpeed;
-    }
 
     [Header("Move Settings")]
     [SerializeField] private bool isWalking;
@@ -20,12 +14,19 @@ public class PlayerController : MonoBehaviour
         set
         {
             isWalking = value;
-            moveEvent.Invoke(IsWalking);
+            moveEvent?.Invoke(IsWalking);
         }
     }
 
     [Header("Actions")]
     public Action<bool> moveEvent;
+
+    public PlayerController() { }
+    public PlayerController(float moveSpeed, float rotationSpeed)
+    {
+        player.moveSpeed = moveSpeed;
+        player.rotationSpeed = rotationSpeed;
+    }
 
     private void Update()
     {

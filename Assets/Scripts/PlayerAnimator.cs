@@ -16,14 +16,15 @@ public class PlayerAnimator : MonoBehaviour
     {
         animatior = GetComponentInChildren<Animator>();
         playerController = GetComponent<PlayerController>();
-        playerController.moveEvent += ChangeMoveState;
+        //playerController.moveEvent += ChangeMoveState;
     }
 
     private void ChangeMoveState(bool isWalking)
     {
-        Debug.Log("Walk - " + isWalking);
-        this.isWalking = isWalking;
+        if (this.isWalking == isWalking)
+            return;
 
+        this.isWalking = isWalking;
         if (animatior != null)
             animatior.SetBool(IsWalking, isWalking);
     }
