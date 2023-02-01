@@ -14,7 +14,18 @@ public class PlayerController : MonoBehaviour
 
     [Header("Move Settings")]
     [SerializeField] private bool isWalking;
-    public bool IsWalking => isWalking;
+    public bool IsWalking
+    {
+        get => isWalking;
+        set
+        {
+            isWalking = value;
+            moveEvent.Invoke(IsWalking);
+        }
+    }
+
+    [Header("Actions")]
+    public Action<bool> moveEvent;
 
     private void Update()
     {
@@ -25,7 +36,7 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
         transform.position += moveDirection * player.moveSpeed * Time.deltaTime;
 
-        isWalking = moveDirection != Vector3.zero;
+        IsWalking = moveDirection != Vector3.zero;
 
         transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * player.rotationSpeed);
     }
