@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameInput gameInput;
 
     [Header("Move Settings")]
-    [SerializeField] private bool isWalking;
+    [SerializeField] private float playerRadius = 0.7f;
+    [SerializeField] private float playerHeigh = 2f;
+
+    [SerializeField, Space] private bool isWalking;
     public bool IsWalking
     {
         get => isWalking;
@@ -41,7 +44,12 @@ public class PlayerController : MonoBehaviour
 
         Vector2 inputVector = gameInput.GetMovementVector();
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
-        transform.position += moveDirection * player.moveSpeed * Time.deltaTime;
+
+        float moveDistance = player.moveSpeed * Time.deltaTime;
+        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirection, moveDistance);
+
+        if (canMove)
+            transform.position += moveDirection * moveDistance;
 
         IsWalking = moveDirection != Vector3.zero;
 
