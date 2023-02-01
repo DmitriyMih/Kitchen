@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Data")]
     [SerializeField] private Player player;
+    [SerializeField] private GameInput gameInput;
 
     [Header("Move Settings")]
     [SerializeField] private bool isWalking;
@@ -28,12 +29,17 @@ public class PlayerController : MonoBehaviour
         player.rotationSpeed = rotationSpeed;
     }
 
+    private void Awake()
+    {
+        gameInput = GetComponent<GameInput>();
+    }
+
     private void Update()
     {
-        Vector2 inputVector = Vector2.zero;
-        inputVector.x = Input.GetAxis("Horizontal");
-        inputVector.y = Input.GetAxis("Vertical");
+        if (gameInput == null)
+            return;
 
+        Vector2 inputVector = gameInput.GetMovementVector();
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
         transform.position += moveDirection * player.moveSpeed * Time.deltaTime;
 
