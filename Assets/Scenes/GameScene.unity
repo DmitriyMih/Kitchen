@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55314bd7882f7c40bbe0cd1041c5a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObject: {fileID: 3769949379128668790}
   counterTopPoint: {fileID: 1593280079}
+  kitchenObject: {fileID: 3769949379128668790}
 --- !u!65 &73974991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ Transform:
   - {fileID: 615634186}
   - {fileID: 1593280079}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &108030827
 GameObject:
@@ -361,8 +361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55314bd7882f7c40bbe0cd1041c5a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObject: {fileID: 427894202}
   counterTopPoint: {fileID: 662998623}
+  kitchenObject: {fileID: 427894202}
 --- !u!65 &339127396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -392,7 +392,7 @@ Transform:
   - {fileID: 534923434}
   - {fileID: 662998623}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &342537436
 GameObject:
@@ -459,6 +459,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a49ca7b89b7b64e81096b9e9042a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &484805250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 484805251}
+  m_Layer: 0
+  m_Name: Kitchen Object Hold Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &484805251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484805250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1074149729}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &486238200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,8 +1066,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2023623015}
+  - {fileID: 484805251}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1074149730
 MonoBehaviour:
@@ -1061,6 +1093,8 @@ MonoBehaviour:
   countersLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  counterTopPoint: {fileID: 0}
+  kitchenObjectHoldPoint: {fileID: 0}
 --- !u!114 &1074149731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1818,7 +1852,7 @@ Transform:
   - {fileID: 2042580945}
   - {fileID: 875224666}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2094405275
 MonoBehaviour:
@@ -1832,8 +1866,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55314bd7882f7c40bbe0cd1041c5a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObject: {fileID: 7911771006188300778}
   counterTopPoint: {fileID: 875224666}
+  kitchenObject: {fileID: 7911771006188300778}
 --- !u!65 &2094405276
 BoxCollider:
   m_ObjectHideFlags: 0

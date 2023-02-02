@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IKitchenObjectParent
 {
     public static PlayerController Instance { get; private set; }
 
     [Header("Player Data")]
     [SerializeField] private Player player;
-    [SerializeField] private GameInput gameInput;
+    private GameInput gameInput;
 
     [Header("Move Settings")]
     [SerializeField] private float playerRadius = 0.7f;
@@ -26,11 +26,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interaction Settings")]
     [SerializeField] private float interactDistance = 2f;
+    [SerializeField] private LayerMask countersLayerMask;
+    [SerializeField] private Transform counterTopPoint;
+    [SerializeField] private KitchenObject kitchenObjectHoldPoint ;
+
     private Vector3 lastinteractDirection;
     private ClearCounter selectedCounter;
-
-    [SerializeField] private LayerMask countersLayerMask;
-
+    
     [Header("Actions")]
     public Action<bool> moveEvent;
 
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
     private void GameInputOnInteractAction(object sender, System.EventArgs e)
     {
         if (selectedCounter != null)
-            selectedCounter.Interact();
+            selectedCounter.Interact(this);
     }
 
     private void Update()
@@ -138,6 +140,33 @@ public class PlayerController : MonoBehaviour
         IsWalking = moveDirection != Vector3.zero;
         transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * player.rotationSpeed);
     }
+
+    #region Ikitchen Interface
+    public Transform GetKitchenObjectFollowTransform()
+    {
+        return counterTopPoint;
+    }
+
+    public void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        this.kitchenObjectHoldPoint = kitchenObject;
+    }
+
+    public KitchenObject GetKitchenObject()
+    {
+        return kitchenObjectHoldPoint;
+    }
+
+    public bool HasKitchenObject()
+    {
+        return kitchenObjectHoldPoint != null;
+    }
+
+    public void ClearKitchenObject()
+    {
+        kitchenObjectHoldPoint = null;
+    }
+    #endregion
 }
 
 [Serializable]
