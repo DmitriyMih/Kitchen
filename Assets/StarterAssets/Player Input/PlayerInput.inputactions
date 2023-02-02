@@ -179,11 +179,22 @@
                 },
                 {
                     "name": "",
-                    "id": "277a3970-ae4d-41fb-b6cb-a9f6686a20ad",
+                    "id": "07de0c88-0f67-4c29-8d20-42989d81dc81",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad;PS4 Controller;Xbox Controller",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6630c99-71ab-4339-95ad-df62a62cc6d5",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Xbox Controller;PS4 Controller",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false

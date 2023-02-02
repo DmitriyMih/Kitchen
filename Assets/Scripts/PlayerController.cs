@@ -25,11 +25,18 @@ public class PlayerController : MonoBehaviour
     [Header("Interaction Settings")]
     [SerializeField] private float interactDistance = 2f;
     private Vector3 lastinteractDirection;
+    private ClearCounter selectedCounter;
 
     [SerializeField] private LayerMask countersLayerMask;
 
     [Header("Actions")]
     public Action<bool> moveEvent;
+
+    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    public class OnSelectedCounterChangedEventArgs : EventArgs
+    {
+        public ClearCounter selectedCounter;
+    }
 
     public PlayerController() { }
     public PlayerController(float moveSpeed, float rotationSpeed)
@@ -50,26 +57,23 @@ public class PlayerController : MonoBehaviour
 
     private void GameInputOnInteractAction(object sender, System.EventArgs e)
     {
-        Vector2 inputVector = gameInput.GetMovementVector();
-        Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
-
-        if (moveDirection != Vector3.zero)
-            lastinteractDirection = moveDirection;
-
-        if (Physics.Raycast(transform.position, lastinteractDirection, out RaycastHit raycastHit, interactDistance, countersLayerMask))
-        {
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
-            {
-                clearCounter.Interact();
-                Debug.Log("Interact - " + clearCounter.gameObject.name);
-            }
-        }
+        if (selectedCounter != null)
+            selectedCounter.Interact();
     }
 
     private void Update()
     {
         HandleMovement();
         HandleOnInteraction();
+    }
+
+    private void SetSelectedCounter(ClearCounter selectedCounter)
+    {
+        this.selectedCounter = selectedCounter;
+        OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
+        {
+            selectedCounter = selectedCounter
+        });
     }
 
     private void HandleOnInteraction()
@@ -84,10 +88,16 @@ public class PlayerController : MonoBehaviour
         {
             if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
-                clearCounter.Interact();
-                //Debug.Log("Interact - " + clearCounter.gameObject.name);
+                if (clearCounter != selectedCounter)
+                {
+                    SetSelectedCounter(clearCounter);
+                }
             }
+            else
+                SetSelectedCounter(null);
         }
+        else
+            SetSelectedCounter(null);
     }
 
     private void HandleMovement()
