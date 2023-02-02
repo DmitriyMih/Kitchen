@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &838752489483656543
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 376447789502292162, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_Size.x
+      value: 2.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 376447789502292162, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_Size.y
+      value: 2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 376447789502292162, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 77b28124b8bda494381c80bd5aa42c22, type: 3}
+    - target: {fileID: 376447789502292162, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698169, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_Name
+      value: Container Counter Clean Bread
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698172, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: kitchenObjectSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 28d48f7cf2cb4af49b5f0fda71ef2a9e, type: 2}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147248189482698173, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c9e82fc29d25c694e883adf1ed570a0b, type: 3}
