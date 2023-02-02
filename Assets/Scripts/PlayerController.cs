@@ -132,8 +132,8 @@ public class PlayerController : MonoBehaviour
                     moveDirection = moveDirectionZ;
             }
         }
-        else
-            transform.position += moveDirection * moveDistance;
+
+        transform.position += moveDirection * moveDistance;
 
         IsWalking = moveDirection != Vector3.zero;
         transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * player.rotationSpeed);
