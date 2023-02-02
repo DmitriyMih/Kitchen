@@ -6,4 +6,12 @@ public class KitchenObject : MonoBehaviour
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
     public KitchenObjectSO KitchenObjectSO => kitchenObjectSO;
+
+    public string GetObjectName()
+    {
+        if (kitchenObjectSO == null)
+            return null;
+
+        return kitchenObjectSO.objectName;
+    }
 }
