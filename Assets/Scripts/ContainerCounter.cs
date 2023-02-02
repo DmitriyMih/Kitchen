@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class ContainerCounter : BaseCounter, IKitchenObjectParent
+public class ContainerCounter : BaseCounter
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
-    [SerializeField] private Transform counterTopPoint;
     [SerializeField] private SpriteRenderer sprite;
 
-    [Header("Connect Settings")]
-    [SerializeField] private KitchenObject kitchenObject;
+    public event EventHandler OnPlayerGrabbedObject;
 
     private void Awake()
     {
@@ -22,42 +21,14 @@ public class ContainerCounter : BaseCounter, IKitchenObjectParent
     public override void Interact(PlayerController player)
     {
         Debug.Log("Interaction In | Container Counter");
-        if (kitchenObject == null)
+        if (!player.HasKitchenObject())
         {
             if (kitchenObjectSO == null)
                 return;
 
-            Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, counterTopPoint);
-            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(this);
+            Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
+            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(player);
+            OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
         }
-        else
-            kitchenObject.SetKitchenObjectParent(player);
     }
-
-    #region Ikitchen Interface
-    public Transform GetKitchenObjectFollowTransform()
-    {
-        return counterTopPoint;
-    }
-
-    public void SetKitchenObject(KitchenObject kitchenObject)
-    {
-        this.kitchenObject = kitchenObject;
-    }
-
-    public KitchenObject GetKitchenObject()
-    {
-        return null;
-    }
-
-    public bool HasKitchenObject()
-    {
-        return false;
-    }
-
-    public void ClearKitchenObject()
-    {
-        kitchenObject = null;
-    }
-    #endregion
 }

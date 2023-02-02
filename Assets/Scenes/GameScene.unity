@@ -198,6 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 110004345}
   - component: {fileID: 110004346}
+  - component: {fileID: 110004347}
   m_Layer: 0
   m_Name: ContainerCounter_Visual
   m_TagString: Untagged
@@ -244,6 +245,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &110004347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110004344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c4bb30b6a225d4e9cd24a1993da7d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containerCounter: {fileID: 1410062435}
 --- !u!1001 &135053981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -517,10 +531,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382d017d3c2bb7f48ac38482ec5a6208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObjectSO: {fileID: 11400000, guid: c3ddd0ea06540124abc37c603d519408, type: 2}
   counterTopPoint: {fileID: 466765003}
-  sprite: {fileID: 8919630329004193035}
   kitchenObject: {fileID: 0}
+  kitchenObjectSO: {fileID: 11400000, guid: c3ddd0ea06540124abc37c603d519408, type: 2}
+  sprite: {fileID: 8919630329004193035}
 --- !u!1001 &459014724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2280,10 +2294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382d017d3c2bb7f48ac38482ec5a6208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObjectSO: {fileID: 11400000, guid: b92c68e7399b2494781c72e539e17a93, type: 2}
   counterTopPoint: {fileID: 1841908550}
-  sprite: {fileID: 1299932527}
   kitchenObject: {fileID: 0}
+  kitchenObjectSO: {fileID: 11400000, guid: b92c68e7399b2494781c72e539e17a93, type: 2}
+  sprite: {fileID: 1299932527}
 --- !u!1001 &1498384327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2824,6 +2838,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528790858147768619}
   - component: {fileID: 8047486492101402181}
+  - component: {fileID: 8047486492101402182}
   m_Layer: 0
   m_Name: ContainerCounter_Visual
   m_TagString: Untagged
@@ -9232,6 +9247,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8047486492101402182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528790858147768618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c4bb30b6a225d4e9cd24a1993da7d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containerCounter: {fileID: 396890229}
 --- !u!4 &8084705696686864073
 Transform:
   m_ObjectHideFlags: 0
