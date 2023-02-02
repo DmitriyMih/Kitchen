@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; private set; }
+
     [Header("Player Data")]
     [SerializeField] private Player player;
     [SerializeField] private GameInput gameInput;
@@ -48,6 +50,11 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         gameInput = GetComponent<GameInput>();
+
+        if (Instance != null)
+            Debug.LogError("There is more than one Player instance");
+        else
+            Instance = this;
     }
 
     private void Start()
@@ -89,9 +96,7 @@ public class PlayerController : MonoBehaviour
             if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
                 if (clearCounter != selectedCounter)
-                {
                     SetSelectedCounter(clearCounter);
-                }
             }
             else
                 SetSelectedCounter(null);
