@@ -43,6 +43,29 @@ public class PlayerController : MonoBehaviour
         gameInput = GetComponent<GameInput>();
     }
 
+    private void Start()
+    {
+        gameInput.OnInteractAction += GameInputOnInteractAction;
+    }
+
+    private void GameInputOnInteractAction(object sender, System.EventArgs e)
+    {
+        Vector2 inputVector = gameInput.GetMovementVector();
+        Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
+
+        if (moveDirection != Vector3.zero)
+            lastinteractDirection = moveDirection;
+
+        if (Physics.Raycast(transform.position, lastinteractDirection, out RaycastHit raycastHit, interactDistance, countersLayerMask))
+        {
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            {
+                clearCounter.Interact();
+                Debug.Log("Interact - " + clearCounter.gameObject.name);
+            }
+        }
+    }
+
     private void Update()
     {
         HandleMovement();
@@ -55,16 +78,14 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 
         if (moveDirection != Vector3.zero)
-        {
             lastinteractDirection = moveDirection;
-        }
 
-        if (Physics.Raycast(transform.position, moveDirection, out RaycastHit raycastHit, interactDistance, countersLayerMask))
+        if (Physics.Raycast(transform.position, lastinteractDirection, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
             if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
                 clearCounter.Interact();
-                Debug.Log("Interact - " + clearCounter.gameObject.name);
+                //Debug.Log("Interact - " + clearCounter.gameObject.name);
             }
         }
     }
