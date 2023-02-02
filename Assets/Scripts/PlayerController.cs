@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    [Header("Interaction Settings")]
+    [SerializeField] private float interactDistance = 2f;
+    private Vector3 lastinteractDirection;
+
+    [SerializeField] private LayerMask countersLayerMask;
+
     [Header("Actions")]
     public Action<bool> moveEvent;
 
@@ -38,6 +44,32 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
+    {
+        HandleMovement();
+        HandleOnInteraction();
+    }
+
+    private void HandleOnInteraction()
+    {
+        Vector2 inputVector = gameInput.GetMovementVector();
+        Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
+
+        if (moveDirection != Vector3.zero)
+        {
+            lastinteractDirection = moveDirection;
+        }
+
+        if (Physics.Raycast(transform.position, moveDirection, out RaycastHit raycastHit, interactDistance, countersLayerMask))
+        {
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            {
+                clearCounter.Interact();
+                Debug.Log("Interact - " + clearCounter.gameObject.name);
+            }
+        }
+    }
+
+    private void HandleMovement()
     {
         if (gameInput == null)
             return;
