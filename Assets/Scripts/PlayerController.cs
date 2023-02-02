@@ -28,11 +28,11 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     [SerializeField] private float interactDistance = 2f;
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private Transform counterTopPoint;
-    [SerializeField] private KitchenObject kitchenObjectHoldPoint ;
+    [SerializeField] private KitchenObject kitchenObjectHoldPoint;
 
     private Vector3 lastinteractDirection;
     private ClearCounter selectedCounter;
-    
+
     [Header("Actions")]
     public Action<bool> moveEvent;
 
@@ -134,8 +134,8 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
                     moveDirection = moveDirectionZ;
             }
         }
-
         transform.position += moveDirection * moveDistance;
+
 
         IsWalking = moveDirection != Vector3.zero;
         transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * player.rotationSpeed);

@@ -17,7 +17,7 @@ public class ClearCounter : MonoBehaviour, IKitchenObjectParent
         }
 
         kitchenObject.SetKitchenObjectParent(player);
-        Debug.Log($"Interaction Object {kitchenObject.GetObjectName()}");
+        //Debug.Log($"Interaction Object {kitchenObject.GetObjectName()}");
     }
 
     #region Ikitchen Interface
