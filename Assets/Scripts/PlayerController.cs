@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     [SerializeField] private float interactDistance = 2f;
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private Transform counterTopPoint;
-    private KitchenObject kitchenObjectHoldPoint;
+    [SerializeField] private KitchenObject kitchenObjectHoldPoint;
 
     private Vector3 lastinteractDirection;
     private BaseCounter selectedCounter;

@@ -22,12 +22,12 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 
     public KitchenObject GetKitchenObject()
     {
-        return null;
+        return kitchenObject;
     }
 
     public bool HasKitchenObject()
     {
-        return false;
+        return kitchenObject != null;
     }
 
     public void ClearKitchenObject()

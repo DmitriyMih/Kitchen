@@ -1494,6 +1494,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   counterTopPoint: {fileID: 484805251}
+  kitchenObjectHoldPoint: {fileID: 0}
 --- !u!114 &1074149731
 MonoBehaviour:
   m_ObjectHideFlags: 0
