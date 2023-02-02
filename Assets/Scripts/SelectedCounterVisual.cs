@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class SelectedCounterVisual : MonoBehaviour
 {
-    [SerializeField] private ClearCounter clearCounter;
-    [SerializeField] private GameObject visualGameObject;
+    [SerializeField] private BaseCounter baseCounter;
+    [SerializeField] private GameObject[] visualGameObjectArray;
+
+    private void Awake()
+    {
+        baseCounter = GetComponent<BaseCounter>();
+    }
 
     private void Start()
     {
@@ -14,7 +19,7 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void PlayerOnSelectedCounterChanged(object sender, PlayerController.OnSelectedCounterChangedEventArgs e)
     {
-        if (e.selectedCounter == clearCounter)
+        if (e.selectedCounter == baseCounter)
             Show();
         else
             Hide();
@@ -22,15 +27,29 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void Show()
     {
-        if (visualGameObject == null) { Debug.LogError("Visual object is null"); return; }
+        for (int i = 0; i < visualGameObjectArray.Length; i++)
+        {
+            if (visualGameObjectArray[i] == null)
+            {
+                Debug.LogError("Visual object is null");
+                continue;
+            }
 
-        visualGameObject.SetActive(true);
+            visualGameObjectArray[i].SetActive(true);
+        }
     }
 
     private void Hide()
     {
-        if (visualGameObject == null) { Debug.LogError("Visual object is null"); return; }
+        for (int i = 0; i < visualGameObjectArray.Length; i++)
+        {
+            if (visualGameObjectArray[i] == null)
+            {
+                Debug.LogError("Visual object is null");
+                continue;
+            }
 
-        visualGameObject.SetActive(false);
+            visualGameObjectArray[i].SetActive(false);
+        }
     }
 }

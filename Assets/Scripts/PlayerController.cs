@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     [SerializeField] private float interactDistance = 2f;
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private Transform counterTopPoint;
-    [SerializeField] private KitchenObject kitchenObjectHoldPoint;
+    private KitchenObject kitchenObjectHoldPoint;
 
     private Vector3 lastinteractDirection;
-    private ClearCounter selectedCounter;
+    private BaseCounter selectedCounter;
 
     [Header("Actions")]
     public Action<bool> moveEvent;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
-        public ClearCounter selectedCounter;
+        public BaseCounter selectedCounter;
     }
 
     public PlayerController() { }
@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void GameInputOnInteractAction(object sender, System.EventArgs e)
     {
+        Debug.Log("Interact - " + selectedCounter);
         if (selectedCounter != null)
             selectedCounter.Interact(this);
     }
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
         HandleOnInteraction();
     }
 
-    private void SetSelectedCounter(ClearCounter selectedCounter)
+    private void SetSelectedCounter(BaseCounter selectedCounter)
     {
         this.selectedCounter = selectedCounter;
         OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
@@ -95,10 +96,10 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
         if (Physics.Raycast(transform.position, lastinteractDirection, out RaycastHit raycastHit, interactDistance, countersLayerMask))
         {
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
             {
-                if (clearCounter != selectedCounter)
-                    SetSelectedCounter(clearCounter);
+                if (baseCounter != selectedCounter)
+                    SetSelectedCounter(baseCounter);
             }
             else
                 SetSelectedCounter(null);

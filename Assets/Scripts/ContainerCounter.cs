@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearCounter : BaseCounter, IKitchenObjectParent
+public class ContainerCounter : BaseCounter, IKitchenObjectParent
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
     [SerializeField] private Transform counterTopPoint;
+    [SerializeField] private SpriteRenderer sprite;
 
     [Header("Connect Settings")]
     [SerializeField] private KitchenObject kitchenObject;
 
+    private void Awake()
+    {
+        if (kitchenObjectSO != null)
+            sprite.sprite = kitchenObjectSO.sprite;
+        else
+            Debug.LogError("Kitchen Object SO Is Null");
+    }
+
     public override void Interact(PlayerController player)
     {
-        Debug.Log("Interaction In | Counter");
+        Debug.Log("Interaction In | Container Counter");
         if (kitchenObject == null)
         {
             if (kitchenObjectSO == null)
@@ -30,20 +39,20 @@ public class ClearCounter : BaseCounter, IKitchenObjectParent
     {
         return counterTopPoint;
     }
-  
+
     public void SetKitchenObject(KitchenObject kitchenObject)
     {
         this.kitchenObject = kitchenObject;
     }
- 
+
     public KitchenObject GetKitchenObject()
     {
-        return kitchenObject;
+        return null;
     }
 
     public bool HasKitchenObject()
     {
-        return kitchenObject != null;
+        return false;
     }
 
     public void ClearKitchenObject()
