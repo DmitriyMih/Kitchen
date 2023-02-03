@@ -213,7 +213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &342537437
 Transform:
   m_ObjectHideFlags: 0
@@ -789,7 +789,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   counterTopPoint: {fileID: 1949381092}
   kitchenObject: {fileID: 0}
-  cutKitchenObjectSO: {fileID: 11400000, guid: c6310c32e9a954f4d899289579a4039e, type: 2}
+  cuttingRecipeArray:
+  - {fileID: 11400000, guid: 3926df3eac841644cbf42a2ecc16a346, type: 2}
+  - {fileID: 11400000, guid: bc42fa284899c8547836c6ad07e43262, type: 2}
+  - {fileID: 11400000, guid: 462c3e5ec512ee84da48af2b8d71423f, type: 2}
 --- !u!65 &843032781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2630,7 +2633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949381091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
