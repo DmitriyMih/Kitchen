@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     [SerializeField] private float interactDistance = 2f;
     [SerializeField] private LayerMask countersLayerMask;
     [SerializeField] private Transform counterTopPoint;
-    [SerializeField] private KitchenObject kitchenObjectHoldPoint;
+    [SerializeField] private KitchenObject kitchenObjectInHoldPoint;
 
     private Vector3 lastinteractDirection;
     private BaseCounter selectedCounter;
@@ -158,22 +158,22 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     public void SetKitchenObject(KitchenObject kitchenObject)
     {
-        this.kitchenObjectHoldPoint = kitchenObject;
+        this.kitchenObjectInHoldPoint = kitchenObject;
     }
 
     public KitchenObject GetKitchenObject()
     {
-        return kitchenObjectHoldPoint;
+        return kitchenObjectInHoldPoint;
     }
 
     public bool HasKitchenObject()
     {
-        return kitchenObjectHoldPoint != null;
+        return kitchenObjectInHoldPoint != null;
     }
 
     public void ClearKitchenObject()
     {
-        kitchenObjectHoldPoint = null;
+        kitchenObjectInHoldPoint = null;
     }
     #endregion
 }
