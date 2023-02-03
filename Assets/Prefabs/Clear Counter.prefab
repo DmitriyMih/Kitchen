@@ -240,7 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55314bd7882f7c40bbe0cd1041c5a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObjectSO: {fileID: 0}
   counterTopPoint: {fileID: 7332508312765453680}
   kitchenObject: {fileID: 0}
 --- !u!114 &7332508313688939959
@@ -255,7 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0889f033a44a1f40bfa97cbb183bf12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCounter: {fileID: 0}
   visualGameObjectArray:
   - {fileID: 7332508313645368570}
 --- !u!1 &7332508314486300918

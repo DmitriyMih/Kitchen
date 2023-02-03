@@ -5,7 +5,7 @@ using UnityEngine;
 public class SelectedCounterVisual : MonoBehaviour
 {
     [SerializeField] private GameObject[] visualGameObjectArray;
-    private BaseCounter baseCounter;
+    [SerializeField] private BaseCounter baseCounter;
 
     private void Awake()
     {
@@ -20,7 +20,10 @@ public class SelectedCounterVisual : MonoBehaviour
     private void PlayerOnSelectedCounterChanged(object sender, PlayerController.OnSelectedCounterChangedEventArgs e)
     {
         if (e.selectedCounter == baseCounter)
+        {
+            Debug.Log(e.selectedCounter + " | " + baseCounter + " || "+ gameObject.name);
             Show();
+        }
         else
             Hide();
     }

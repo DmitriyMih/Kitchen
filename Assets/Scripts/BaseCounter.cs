@@ -8,6 +8,7 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
     [SerializeField] protected KitchenObject kitchenObject;
 
     public virtual void Interact(PlayerController player) { }
+    public virtual void InteractAlternate(PlayerController player) { }
 
     #region Ikitchen Interface
     public Transform GetKitchenObjectFollowTransform()

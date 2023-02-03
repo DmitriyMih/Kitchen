@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "InteractAlternate",
+                    "type": "Button",
+                    "id": "61a73bfa-7374-4759-8444-f170312de245",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -180,22 +189,33 @@
                 {
                     "name": "",
                     "id": "07de0c88-0f67-4c29-8d20-42989d81dc81",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;PS4 Controller;Xbox Controller",
+                    "groups": "Gamepad;Xbox Controller;PS4 Controller",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b6630c99-71ab-4339-95ad-df62a62cc6d5",
-                    "path": "<Gamepad>/buttonEast",
+                    "id": "f042e8b3-35c5-4bc6-8058-eeb54b7a2dae",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Xbox Controller;PS4 Controller",
-                    "action": "Interact",
+                    "groups": "KeyboardMouse",
+                    "action": "InteractAlternate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df08f00e-e761-4fb7-b5b0-ec9e6de322fd",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox Controller;Gamepad;PS4 Controller",
+                    "action": "InteractAlternate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
