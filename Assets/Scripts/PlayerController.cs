@@ -74,9 +74,9 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void GameInputOnInteractAlternateAction(object sender, System.EventArgs e)
     {
-        Debug.Log("Interact - " + selectedCounter);
+        Debug.Log("Interact Alternate - " + selectedCounter);
         if (selectedCounter != null)
-            selectedCounter.Interact(this);
+            selectedCounter.InteractAlternate(this);
     }
 
     private void Update()

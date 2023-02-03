@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InteractAlternate",
+                    "name": "AlternateInteract",
                     "type": "Button",
                     "id": "61a73bfa-7374-4759-8444-f170312de245",
                     "expectedControlType": "Button",
@@ -200,11 +200,11 @@
                 {
                     "name": "",
                     "id": "f042e8b3-35c5-4bc6-8058-eeb54b7a2dae",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "InteractAlternate",
+                    "action": "AlternateInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -215,7 +215,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox Controller;Gamepad;PS4 Controller",
-                    "action": "InteractAlternate",
+                    "action": "AlternateInteract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

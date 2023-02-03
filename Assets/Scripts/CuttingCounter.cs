@@ -8,7 +8,6 @@ public class CuttingCounter : BaseCounter
 
     public override void Interact(PlayerController player)
     {
-        Debug.Log("Interaction In | Counter");
         if (!HasKitchenObject())
         {
             if (player.HasKitchenObject())
@@ -31,9 +30,13 @@ public class CuttingCounter : BaseCounter
 
     public override void InteractAlternate(PlayerController player)
     {
+        Debug.Log("Interaction Alternate In | Counter");
         if(HasKitchenObject())
         {
             GetKitchenObject().DestroySelf();
+
+            Transform kitchenObjectTransform = Instantiate(cutKitchenObjectSO.prefab);
+            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(this);
         }
     }
 }
