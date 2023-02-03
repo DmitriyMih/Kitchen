@@ -1156,6 +1156,7 @@ GameObject:
   - component: {fileID: 852027492}
   - component: {fileID: 852027491}
   - component: {fileID: 852027490}
+  - component: {fileID: 852027493}
   m_Layer: 6
   m_Name: Progress Bar UI
   m_TagString: Untagged
@@ -1170,7 +1171,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852027488}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: -0.92050487, z: 0.3907311, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1246,6 +1247,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &852027493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852027488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cfba06fb8efa0449129ba1e5be8aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookMode: 2
 --- !u!4 &868487983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8453913125380839650, guid: 3189bbe7444cb3b4aa83e19bb6bbd3b6, type: 3}
@@ -2826,6 +2840,7 @@ GameObject:
   - component: {fileID: 1400817023}
   - component: {fileID: 1400817022}
   - component: {fileID: 1400817021}
+  - component: {fileID: 1400817025}
   m_Layer: 6
   m_Name: Progress Bar UI
   m_TagString: Untagged
@@ -2901,7 +2916,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400817020}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0.3907311, y: -0, z: -0, w: 0.92050487}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2916,6 +2931,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2.5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1400817025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400817020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cfba06fb8efa0449129ba1e5be8aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookMode: 2
 --- !u!4 &1421917834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8453913125380839650, guid: 3a573536a4fb60c42a32bc7ce7ab7ec3, type: 3}
