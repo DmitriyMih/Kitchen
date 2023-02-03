@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class KitchenObject : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class KitchenObject : MonoBehaviour
     [Header("Connect Settings")]
     [SerializeField] private IKitchenObjectParent kitchenObjectParent;
 
+    [Header("Object Move Settings")]
+    [SerializeField] private float moveTime = 0.3f;
+    [SerializeField] private float rotationTime = 0.15f;
+
     public string GetObjectName()
     {
         if (kitchenObjectSO == null)
@@ -17,8 +22,7 @@ public class KitchenObject : MonoBehaviour
 
         return kitchenObjectSO.objectName; 
     }
-
-    public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent)
+    public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent, bool tweenMove = true)
     {
         if (this.kitchenObjectParent != null)
             this.kitchenObjectParent.ClearKitchenObject();
@@ -34,10 +38,18 @@ public class KitchenObject : MonoBehaviour
         }
 
         kitchenObjectParent.SetKitchenObject(this);
-
         transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform();
-        transform.localPosition = Vector3.zero;
-        transform.rotation = Quaternion.identity;
+
+        if (tweenMove)
+        {
+            transform.DOLocalMove(Vector3.zero, moveTime);
+            transform.DOLocalRotateQuaternion(Quaternion.identity, rotationTime);
+        }
+        else
+        {
+            transform.localPosition = Vector3.zero;
+            transform.rotation = Quaternion.identity;
+        }
     }
 
     public IKitchenObjectParent GetKitchenObjectParent()
@@ -63,7 +75,7 @@ public class KitchenObject : MonoBehaviour
 
         Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
         KitchenObject kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
-        kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
+        kitchenObject.SetKitchenObjectParent(kitchenObjectParent, false);
         return kitchenObject;
     }
 }

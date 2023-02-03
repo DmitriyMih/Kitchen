@@ -26,7 +26,10 @@ public class ContainerCounter : BaseCounter
             if (kitchenObjectSO == null)
                 return;
 
-            KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
+            //KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
+            KitchenObject kitchenObject = KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
+            //kitchenObject.SetKitchenObjectParent(player, false);
+
             OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
         }
     }
