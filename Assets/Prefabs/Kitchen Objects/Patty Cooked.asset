@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80397ac495315eb4c8bb1f264914ef7a, type: 3}
-  m_Name: Patty Cooked 1
+  m_Name: Patty Cooked
   m_EditorClassIdentifier: 
   prefab: {fileID: 3655380900925603364, guid: 7412df981be39fb48b77e51260272d55, type: 3}
   sprite: {fileID: 21300000, guid: f1f50c7ef90b19741b26f2040806cf56, type: 3}
