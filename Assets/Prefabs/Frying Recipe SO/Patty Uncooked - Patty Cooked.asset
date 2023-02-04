@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: dbd7a0da162648043bb18d5688b057cf, type: 2}
   output: {fileID: 11400000, guid: 9459f50d81fe71a448382839559724f2, type: 2}
-  fryingTimerMax: 3
+  fryingTimerMax: 6
   outputName: Patty Uncooked - Patty Cooked

@@ -109,6 +109,7 @@ public class StoveCounter : BaseCounter, IHasProgress
 
     public override void Interact(PlayerController player)
     {
+        //  If Empty
         if (!HasKitchenObject())
         {
             if (player.HasKitchenObject())
@@ -131,24 +132,44 @@ public class StoveCounter : BaseCounter, IHasProgress
         }
         else
         {
-            if (player.HasKitchenObject() || state == State.Frying) { }
+            Debug.Log("Stove Empty");
+            // If Objects In Player Not Null
+            if (player.HasKitchenObject())
+            {
+                Debug.Log("Non");
+                if (state == State.Frying)
+                    return;
+
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                    if (plateKitchenObject.TryAddIngridient(GetKitchenObject().GetKitchenObjectSO()))
+                    {
+                        GetKitchenObject().DestroySelf();
+                        SetDefaultState();
+                    }
+            }
             else
             {
                 GetKitchenObject().SetKitchenObjectParent(player);
-                state = State.Idle;
-
-                OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
-                {
-                    state = this.state
-                });
-
-                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
-                {
-                    progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax
-                });
+                SetDefaultState();
             }
         }
     }
+
+    private void SetDefaultState()
+    {
+        state = State.Idle;
+
+        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+        {
+            state = this.state
+        });
+
+        OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+        {
+            progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax
+        });
+    }
+
 
     private bool HasRecipeWithInput(KitchenObjectSO inputKitchenObjectSO)
     {

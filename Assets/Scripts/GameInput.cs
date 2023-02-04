@@ -21,14 +21,14 @@ public class GameInput : MonoBehaviour
 
     private void InteractAlternatePerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Debug.Log("Interact Alternative");
+        //Debug.Log("Interact Alternative");
         if (OnInteractAlternateAction != null)
             OnInteractAlternateAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void InteractPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Debug.Log("Interact");
+        //Debug.Log("Interact");
         if (OnInteractAction != null)
             OnInteractAction?.Invoke(this, EventArgs.Empty);
     }

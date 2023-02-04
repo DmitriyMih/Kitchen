@@ -36,11 +36,14 @@ public class CuttingCounter : BaseCounter, IHasProgress
         }
         else
         {
-            if (player.HasKitchenObject() || cuttingprogress != 0) { }
-            else
+            if (player.HasKitchenObject() || cuttingprogress != 0)
             {
-                GetKitchenObject().SetKitchenObjectParent(player);
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                    if (plateKitchenObject.TryAddIngridient(GetKitchenObject().GetKitchenObjectSO()))
+                        GetKitchenObject().DestroySelf();
             }
+            else
+                GetKitchenObject().SetKitchenObjectParent(player);
         }
     }
 
@@ -67,7 +70,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
                 KitchenObjectSO outputKitchenObjectSO = GetOutputForInput(GetKitchenObject().GetKitchenObjectSO());
 
                 GetKitchenObject().DestroySelf();
-                KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this); 
+                KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
                 cuttingprogress = 0;
             }
         }

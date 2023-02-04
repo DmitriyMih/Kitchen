@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 9459f50d81fe71a448382839559724f2, type: 2}
   output: {fileID: 11400000, guid: f9df5e6dc1c7a2342b990d924348b7e0, type: 2}
-  burningTimerMax: 3.5
+  burningTimerMax: 6
   outputName: Patty Cooked - Patty Burned
