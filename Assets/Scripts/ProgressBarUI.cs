@@ -5,32 +5,42 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class ProgressBarUI : MonoBehaviour
 {
-    [SerializeField] private CuttingCounter cuttingCounter;
+    [SerializeField] private GameObject hasProgressObject;
     [SerializeField] private Image fillImage;
 
+    private IHasProgress hasProgress;
+
+    [Header("Bar Settings")]
     [SerializeField] private GameObject barGroup;
     [SerializeField] private float fillingTime = 0.1f;
 
     private void Start()
     {
-        if (cuttingCounter != null)
-            cuttingCounter.OnProgressChanged += CuttingCounterOnProgressChanged;
+        if (hasProgressObject != null)
+            hasProgress = hasProgressObject.GetComponent<IHasProgress>();
 
-        FillBar(0); 
+        if (hasProgress != null)
+            hasProgress.OnProgressChanged += HasProgressOnProgressChanged;
+
+        FillBar(0);
         Hide();
     }
 
-    private void CuttingCounterOnProgressChanged(object sender, CuttingCounter.OnProgressChangedEventArgs e)
+    private void HasProgressOnProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)
     {
         FillBar(e.progressNormalized);
     }
 
-    private void FillBar(float value)
+    private void FillBar(float value, bool instantFill = false)
     {
         if (fillImage == null) { Debug.LogError("Fill Image Is Null"); return; }
 
         value = Mathf.Clamp(value, 0f, 1f);
-        fillImage.DOFillAmount(value, fillingTime);
+
+        if (instantFill)
+            fillImage.DOFillAmount(value, 0);
+        else
+            fillImage.DOFillAmount(value, fillingTime);
 
         if (value == 0f || value == 1f)
             Hide();
@@ -41,7 +51,7 @@ public class ProgressBarUI : MonoBehaviour
     private void Show()
     {
         if (barGroup == null) { Debug.Log("Bar Group Is Null"); return; }
-        
+
         barGroup.SetActive(true);
     }
 
