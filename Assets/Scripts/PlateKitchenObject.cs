@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,15 +8,32 @@ public class PlateKitchenObject : KitchenObject
     [SerializeField] private List<KitchenObjectSO> validKitchenObjectSOList;
     [SerializeField] private List<KitchenObjectSO> kitchenObjectSOList;
 
+    public event EventHandler OnIngredientCleared;
+    public event EventHandler<OnIngredientAddedEventArgs> OnIngredientAdded;
+    public class OnIngredientAddedEventArgs : EventArgs
+    {
+        public KitchenObjectSO kitchenObjectSO;
+    }
+
     public bool TryAddIngridient(KitchenObjectSO kitchenObjectSO)
     {
-        if(!validKitchenObjectSOList.Contains(kitchenObjectSO))
+        if (kitchenObjectSO == null)
+        {
+            Debug.LogError("Kitchen Object Is Null | " + gameObject.name);
+            return false;
+        }
+
+        if (!validKitchenObjectSOList.Contains(kitchenObjectSO))
             return false;
 
         if (kitchenObjectSOList.Contains(kitchenObjectSO))
             return false;
 
         kitchenObjectSOList.Add(kitchenObjectSO);
+        OnIngredientAdded?.Invoke(kitchenObjectSO, new OnIngredientAddedEventArgs
+        {
+            kitchenObjectSO = kitchenObjectSO
+        });
         return true;
     }
 
@@ -29,14 +47,7 @@ public class PlateKitchenObject : KitchenObject
         if (!PlateIsNotEmpty())
             return;
 
-        for (int i = 0; i < kitchenObjectSOList.Count; i++)
-        {
-            if (kitchenObjectSOList[i] == null)
-                continue;
-
-            DestroyImmediate(kitchenObjectSOList[i], true);
-        }
-
+        OnIngredientCleared?.Invoke(this, EventArgs.Empty);
         kitchenObjectSOList.Clear();
     }
 }

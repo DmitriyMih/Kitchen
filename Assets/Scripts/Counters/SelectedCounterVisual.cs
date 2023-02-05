@@ -29,7 +29,7 @@ public class SelectedCounterVisual : MonoBehaviour
     {
         for (int i = 0; i < visualGameObjectArray.Length; i++)
         {
-            Debug.Log("Show - " + gameObject);
+            //Debug.Log("Show - " + gameObject);
             if (visualGameObjectArray[i] == null)
             {
                 Debug.LogError("Visual object is null");

@@ -18,6 +18,7 @@ public class ClearCounter : BaseCounter
             {
                 if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
                 {
+                    //  If Plate In Hand
                     if (plateKitchenObject.TryAddIngridient(GetKitchenObject().GetKitchenObjectSO()))
                         GetKitchenObject().DestroySelf();
                 }
@@ -26,6 +27,8 @@ public class ClearCounter : BaseCounter
                     if (GetKitchenObject().TryGetPlate(out plateKitchenObject))
                         if (plateKitchenObject.TryAddIngridient(player.GetKitchenObject().GetKitchenObjectSO()))
                             player.GetKitchenObject().DestroySelf();
+                        else
+                            Debug.Log("Not Find | " + player.GetKitchenObject().GetKitchenObjectSO());
                 }
             }
             else

@@ -17,19 +17,19 @@ public class PlatesCounterVisual : MonoBehaviour
     {
         if (platesCounter != null)
         {
-            platesCounter.OnPlateSpawned += PlatesCounterOnPlateSpawned;
-            platesCounter.OnPlateRemoved += PlatesCounterOnPlateRemoved;
+            platesCounter.OnPlateSpawned += PlatesCounter_OnPlateSpawned;
+            platesCounter.OnPlateRemoved += PlatesCounter_OnPlateRemoved;
         }
     }
 
-    private void PlatesCounterOnPlateSpawned(object sender, System.EventArgs e)
+    private void PlatesCounter_OnPlateSpawned(object sender, System.EventArgs e)
     {
         Transform plateVisualTransform = Instantiate(plateVisualPrefab, counterTopPoint);
         plateVisualTransform.localPosition = new Vector3(0, plateOffcetY * plateVisualGameObjects.Count, 0);
         plateVisualGameObjects.Add(plateVisualTransform.gameObject);
     }
 
-    private void PlatesCounterOnPlateRemoved(object sender, System.EventArgs e)
+    private void PlatesCounter_OnPlateRemoved(object sender, System.EventArgs e)
     {
         if (plateVisualGameObjects.Count == 0)
         {
