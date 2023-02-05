@@ -114,21 +114,35 @@ public class StoveCounter : BaseCounter, IHasProgress
         {
             if (player.HasKitchenObject())
             {
-                if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO()))
+                //  Plate In Hand
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObjectInHand))
                 {
-                    player.GetKitchenObject().SetKitchenObjectParent(this);
-                    fryingRecipeSO = GetFryingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
-
-                    state = State.Frying;
-                    fryingTimer = 0;
-
-                    OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+                    // In Hand Not Empty
+                    if (plateKitchenObjectInHand.GetKitchenObjectSOListCount() == 1)
                     {
-                        state = this.state
-                    }); ;
+                        List<KitchenObjectSO> inputKitchenRecepySO = plateKitchenObjectInHand.GetKitchenObjectSOList();
+                        foreach (KitchenObjectSO kitchenObjectSO in inputKitchenRecepySO)
+                            if (HasRecipeWithInput(kitchenObjectSO))
+                            {
+                                plateKitchenObjectInHand.ClearThePlate();
+
+                                KitchenObject.SpawnKitchenObject(kitchenObjectSO, this);
+                                StartFrying(GetKitchenObject().GetKitchenObjectSO());
+                                return;
+                            }
+                    }
+                }
+                //  In Hand No Plate
+                else
+                {
+                    KitchenObject inputKitchenRecepy = player.GetKitchenObject();
+                    if (HasRecipeWithInput(inputKitchenRecepy.GetKitchenObjectSO()))
+                    {
+                        inputKitchenRecepy.SetKitchenObjectParent(this);
+                        StartFrying(inputKitchenRecepy.GetKitchenObjectSO());
+                    }
                 }
             }
-            else { }
         }
         else
         {
@@ -155,6 +169,20 @@ public class StoveCounter : BaseCounter, IHasProgress
         }
     }
 
+    private void StartFrying(KitchenObjectSO kitchenObjectSO)
+    {
+        fryingRecipeSO = GetFryingRecipeSOWithInput(kitchenObjectSO);
+        if (fryingRecipeSO == null) { Debug.LogError("Kitchen Object So Is Null"); return; }
+
+        state = State.Frying;
+        fryingTimer = 0;
+
+        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+        {
+            state = this.state
+        }); ;
+    }
+
     private void SetDefaultState()
     {
         state = State.Idle;
@@ -173,6 +201,8 @@ public class StoveCounter : BaseCounter, IHasProgress
 
     private bool HasRecipeWithInput(KitchenObjectSO inputKitchenObjectSO)
     {
+        if (inputKitchenObjectSO == null) { Debug.LogError("Input Kitchen Object So Is Null"); return false; }
+
         FryingRecipeSO fryingRecipeSO = GetFryingRecipeSOWithInput(inputKitchenObjectSO);
         return fryingRecipeSO != null;
     }
