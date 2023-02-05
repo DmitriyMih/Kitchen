@@ -47,7 +47,12 @@ public class PlateKitchenObject : KitchenObject
         if (!PlateIsNotEmpty())
             return;
 
-        OnIngredientCleared?.Invoke(this, EventArgs.Empty);
         kitchenObjectSOList.Clear();
+        OnIngredientCleared?.Invoke(this, EventArgs.Empty);
+    }
+
+    public List<KitchenObjectSO> GetKitchenObjectSOList()
+    {
+        return kitchenObjectSOList;
     }
 }
