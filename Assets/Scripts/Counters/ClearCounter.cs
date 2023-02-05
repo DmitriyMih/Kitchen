@@ -6,7 +6,6 @@ public class ClearCounter : BaseCounter
 {
     public override void Interact(PlayerController player)
     {
-        //Debug.Log("Interaction In | Counter");
         if (!HasKitchenObject())
         {
             if (player.HasKitchenObject())
@@ -18,8 +17,16 @@ public class ClearCounter : BaseCounter
             if (player.HasKitchenObject())
             {
                 if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+                {
                     if (plateKitchenObject.TryAddIngridient(GetKitchenObject().GetKitchenObjectSO()))
                         GetKitchenObject().DestroySelf();
+                }
+                else
+                {
+                    if (GetKitchenObject().TryGetPlate(out plateKitchenObject))
+                        if (plateKitchenObject.TryAddIngridient(player.GetKitchenObject().GetKitchenObjectSO()))
+                            player.GetKitchenObject().DestroySelf();
+                }
             }
             else
                 GetKitchenObject().SetKitchenObjectParent(player);
