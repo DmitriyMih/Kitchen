@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     [Header("Move Settings")]
     [SerializeField] private float playerRadius = 0.7f;
     [SerializeField] private float playerHeigh = 2f;
+    [SerializeField] private float deadZoneValue = 0.5f;
 
     [SerializeField, Space] private bool isWalking;
     public bool IsWalking
@@ -130,19 +131,20 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
         if (!canMove)
         {
             Vector3 moveDirectionX = new Vector3(moveDirection.x, 0, 0).normalized;
-            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirectionX, moveDistance);
+            canMove = (moveDirection.x < -deadZoneValue || moveDirection.x > deadZoneValue) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirectionX, moveDistance);
 
             if (canMove)
                 moveDirection = moveDirectionX;
             else
             {
                 Vector3 moveDirectionZ = new Vector3(0, 0, moveDirection.z).normalized;
-                canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirectionZ, moveDistance);
+                canMove = (moveDirection.z < -deadZoneValue || moveDirection.z > deadZoneValue) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirectionZ, moveDistance);
 
                 if (canMove)
                     moveDirection = moveDirectionZ;
             }
         }
+        if(canMove)
         transform.position += moveDirection * moveDistance;
 
 

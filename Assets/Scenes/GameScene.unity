@@ -7398,6 +7398,7 @@ MonoBehaviour:
     rotationSpeed: 10
   playerRadius: 0.5
   playerHeigh: 2
+  deadZoneValue: 0.5
   isWalking: 0
   interactDistance: 2
   countersLayerMask:
