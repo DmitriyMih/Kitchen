@@ -23,4 +23,20 @@ public class PlateKitchenObject : KitchenObject
     {
         return kitchenObjectSOList.Count != 0;
     }
+
+    public void ClearThePlate()
+    {
+        if (!PlateIsNotEmpty())
+            return;
+
+        for (int i = 0; i < kitchenObjectSOList.Count; i++)
+        {
+            if (kitchenObjectSOList[i] == null)
+                continue;
+
+            DestroyImmediate(kitchenObjectSOList[i], true);
+        }
+
+        kitchenObjectSOList.Clear();
+    }
 }

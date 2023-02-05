@@ -13,11 +13,20 @@ public class TrashCounter : BaseCounter
     {
         if (player.HasKitchenObject())
         {
-            player.GetKitchenObject().SetKitchenObjectParent(this, false);
-            KitchenObject kitchenObject = GetKitchenObject();
+            //  If Plate
+            if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+            {
+                plateKitchenObject.ClearThePlate();
+                return;
+            }
+            else
+            {
+                player.GetKitchenObject().SetKitchenObjectParent(this, false);
+                KitchenObject kitchenObject = GetKitchenObject();
 
-            kitchenObject.transform.DOScale(Vector3.zero, objectScaleTime);
-            kitchenObject.transform.DOMove(bottomPoint.position, objectMoveTime).OnComplete(()=> kitchenObject.DestroySelf());
+                kitchenObject.transform.DOScale(Vector3.zero, objectScaleTime);
+                kitchenObject.transform.DOMove(bottomPoint.position, objectMoveTime).OnComplete(() => kitchenObject.DestroySelf());
+            }
         }
     }
 
