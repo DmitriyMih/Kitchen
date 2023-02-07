@@ -7,7 +7,6 @@ using DG.Tweening;
 public class KitchenObject : MonoBehaviour
 {
     private Rigidbody rigidbody;
-    private BoxCollider boxCollider;
 
     [Header("Data Settings")]
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
@@ -29,7 +28,7 @@ public class KitchenObject : MonoBehaviour
         if (kitchenObjectSO == null)
             return null;
 
-        return kitchenObjectSO.objectName; 
+        return kitchenObjectSO.objectName;
     }
     public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent, bool tweenMove = true)
     {
@@ -106,6 +105,7 @@ public class KitchenObject : MonoBehaviour
         }
 
         Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
+        Debug.Log($"Spawn {kitchenObjectTransform.gameObject} | In {kitchenObjectParent}");
         KitchenObject kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
         kitchenObject.SetKitchenObjectParent(kitchenObjectParent, false);
         return kitchenObject;

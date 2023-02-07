@@ -25,6 +25,11 @@ public class KitchenObjectVisual : MonoBehaviour
             Hide();
     }
 
+    private void OnDisable()
+    {
+        PlayerController.Instance.OnSelectedKitchenObjectChanged -= PlayerController_OnSelectedKitchenObjectChanged;
+    }
+
     private void Show()
     {
         for (int i = 0; i < visualGameObjectArray.Length; i++)

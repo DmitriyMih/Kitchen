@@ -76,10 +76,16 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     {
         //Debug.Log("Interact - " + selectedCounter);
         if (selectedCounter != null)
+        {
             selectedCounter.Interact(this);
+            return;
+        }
 
         if (HasKitchenObject())
+        {
             GetKitchenObject().SetKitchenObjectParent(null);
+            SetSelectedKitchenObject(null);
+        }
 
         if (selectedKitchenObject != null)
         {
@@ -149,7 +155,10 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
                 SetSelectedKitchenObject(null);
         }
         else
+        {
             SetSelectedCounter(null);
+            SetSelectedKitchenObject(null);
+        }
     }
 
     private void HandleMovement()
