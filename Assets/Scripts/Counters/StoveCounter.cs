@@ -120,16 +120,15 @@ public class StoveCounter : BaseCounter, IHasProgress
                     // In Hand Not Empty
                     if (plateKitchenObjectInHand.GetKitchenObjectSOListCount() == 1)
                     {
-                        List<KitchenObjectSO> inputKitchenRecepySO = plateKitchenObjectInHand.GetKitchenObjectSOList();
-                        foreach (KitchenObjectSO kitchenObjectSO in inputKitchenRecepySO)
-                            if (HasRecipeWithInput(kitchenObjectSO))
-                            {
-                                plateKitchenObjectInHand.ClearThePlate();
+                        KitchenObjectSO inputKitchenRecepySO = plateKitchenObjectInHand.GetKitchenObjectSOList()[0];
+                        if (HasRecipeWithInput(inputKitchenRecepySO))
+                        {
+                            plateKitchenObjectInHand.ClearThePlate();
 
-                                KitchenObject.SpawnKitchenObject(kitchenObjectSO, this);
-                                StartFrying(GetKitchenObject().GetKitchenObjectSO());
-                                return;
-                            }
+                            KitchenObject.SpawnKitchenObject(inputKitchenRecepySO, this);
+                            StartFrying(GetKitchenObject().GetKitchenObjectSO());
+                            return;
+                        }
                     }
                 }
                 //  In Hand No Plate

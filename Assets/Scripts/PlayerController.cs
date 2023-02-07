@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour, IKitchenObjectParent
 {
     public static PlayerController Instance { get; private set; }
@@ -10,10 +11,11 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     private GameInput gameInput;
 
     [Header("Move Settings")]
-    [SerializeField] private float playerRadius = 0.7f;
-    [SerializeField] private float playerHeigh = 2f;
-    [SerializeField] private float deadZoneValue = 0.5f;
+    //[SerializeField] private float playerRadius = 0.7f;
+    //[SerializeField] private float playerHeigh = 2f;
+    //[SerializeField] private float deadZoneValue = 0.5f;
 
+    private CharacterController characterController;
     [SerializeField, Space] private bool isWalking;
     public bool IsWalking
     {
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void Awake()
     {
+        characterController = GetComponent<CharacterController>();
         gameInput = GetComponent<GameInput>();
 
         if (Instance != null)
@@ -83,6 +86,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     private void Update()
     {
         HandleMovement();
+        HandleRotation();
         HandleOnInteraction();
     }
 
@@ -125,31 +129,24 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
         Vector2 inputVector = gameInput.GetMovementVector();
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 
-        float moveDistance = player.moveSpeed * Time.deltaTime;
-        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirection, moveDistance);
-
-        if (!canMove)
-        {
-            Vector3 moveDirectionX = new Vector3(moveDirection.x, 0, 0).normalized;
-            canMove = (moveDirection.x < -deadZoneValue || moveDirection.x > deadZoneValue) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirectionX, moveDistance);
-
-            if (canMove)
-                moveDirection = moveDirectionX;
-            else
-            {
-                Vector3 moveDirectionZ = new Vector3(0, 0, moveDirection.z).normalized;
-                canMove = (moveDirection.z < -deadZoneValue || moveDirection.z > deadZoneValue) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeigh, playerRadius, moveDirectionZ, moveDistance);
-
-                if (canMove)
-                    moveDirection = moveDirectionZ;
-            }
-        }
-        if(canMove)
-        transform.position += moveDirection * moveDistance;
-
-
         IsWalking = moveDirection != Vector3.zero;
-        transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * player.rotationSpeed);
+        characterController.Move(moveDirection * player.moveSpeed * Time.deltaTime);
+    }
+
+    private void HandleRotation()
+    {
+        if (gameInput == null)
+            return;
+
+        Vector2 inputVector = gameInput.GetMovementVector();
+        Vector3 positionToLookAt = new Vector3(inputVector.x, 0f, inputVector.y);
+        Quaternion currentRotation = transform.rotation;
+
+        if (isWalking)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
+            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, player.rotationSpeed * Time.deltaTime);
+        }
     }
 
     #region Ikitchen Interface
