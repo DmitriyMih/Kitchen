@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8599148979766444324}
   - component: {fileID: 4879415838788558277}
-  m_Layer: 0
+  - component: {fileID: 2478810499716201223}
+  - component: {fileID: 2350604214950449819}
+  m_Layer: 7
   m_Name: Bread Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +48,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kitchenObjectSO: {fileID: 11400000, guid: 28d48f7cf2cb4af49b5f0fda71ef2a9e, type: 2}
+  moveTime: 0.3
+  rotationTime: 0.15
+--- !u!65 &2478810499716201223
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599148979766444325}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.5, z: 0.8}
+  m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!54 &2350604214950449819
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599148979766444325}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1001 &3597688057780104743
 PrefabInstance:
   m_ObjectHideFlags: 0

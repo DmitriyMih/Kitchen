@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+[RequireComponent(typeof(Rigidbody))]
 public class KitchenObject : MonoBehaviour
 {
+    private Rigidbody rigidbody;
+    private BoxCollider boxCollider;
+
     [Header("Data Settings")]
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
@@ -14,6 +18,11 @@ public class KitchenObject : MonoBehaviour
     [Header("Object Move Settings")]
     [SerializeField] private float moveTime = 0.3f;
     [SerializeField] private float rotationTime = 0.15f;
+
+    private void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+    }
 
     public string GetObjectName()
     {
@@ -28,8 +37,14 @@ public class KitchenObject : MonoBehaviour
             this.kitchenObjectParent.ClearKitchenObject();
 
         this.kitchenObjectParent = kitchenObjectParent;
+
+        rigidbody.isKinematic = kitchenObjectParent != null;
+
         if (kitchenObjectParent == null)
+        {
+            transform.parent = null;
             return;
+        }
 
         if (kitchenObjectParent.HasKitchenObject())
         {

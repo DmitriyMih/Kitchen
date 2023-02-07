@@ -8,7 +8,6 @@ public class ObstaclePush : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log("Push - " + hit.gameObject.name);
         if (hit.collider.TryGetComponent(out Rigidbody rigidbody))
         {
             Debug.Log("Push - " + hit.gameObject.name);

@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private Vector3 lastinteractDirection;
     private BaseCounter selectedCounter;
+    private KitchenObject selectedKitchenObject;
 
     [Header("Actions")]
     public Action<bool> moveEvent;
@@ -74,6 +75,15 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
         //Debug.Log("Interact - " + selectedCounter);
         if (selectedCounter != null)
             selectedCounter.Interact(this);
+
+        if (HasKitchenObject())
+            GetKitchenObject().SetKitchenObjectParent(null);
+
+        if (selectedKitchenObject != null)
+        {
+            selectedKitchenObject.SetKitchenObjectParent(this);
+            selectedKitchenObject = null;
+        }
     }
 
     private void GameInputOnInteractAlternateAction(object sender, System.EventArgs e)
@@ -116,6 +126,15 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
             }
             else
                 SetSelectedCounter(null);
+
+            if (raycastHit.transform.TryGetComponent(out KitchenObject kitchenObject))
+            {
+                Debug.Log(kitchenObject);
+                if (!HasKitchenObject())
+                    selectedKitchenObject = kitchenObject;
+            }
+            else
+                kitchenObject = null;
         }
         else
             SetSelectedCounter(null);

@@ -166,7 +166,9 @@ GameObject:
   - component: {fileID: 3626981612821978486}
   - component: {fileID: 2226942176474309326}
   - component: {fileID: 1200953620033461595}
-  m_Layer: 0
+  - component: {fileID: -2295149403141685922}
+  - component: {fileID: 5287346781645952552}
+  m_Layer: 7
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,6 +245,35 @@ MonoBehaviour:
     gameObject: {fileID: 687306849374819117}
   - kitchenObjectSO: {fileID: 11400000, guid: f9df5e6dc1c7a2342b990d924348b7e0, type: 2}
     gameObject: {fileID: 779888350613400945}
+--- !u!65 &-2295149403141685922
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626981612821978487}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.5, z: 0.8}
+  m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!54 &5287346781645952552
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626981612821978487}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1 &4423593642988896725
 GameObject:
   m_ObjectHideFlags: 0

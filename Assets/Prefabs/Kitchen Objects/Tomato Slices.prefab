@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7911771005560734968}
   - component: {fileID: -2770028920842286857}
-  m_Layer: 0
+  - component: {fileID: -7008271058149409651}
+  - component: {fileID: 3687182307874363082}
+  m_Layer: 7
   m_Name: Tomato Slices
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +50,35 @@ MonoBehaviour:
   kitchenObjectSO: {fileID: 11400000, guid: 921ca7c358ca58f43a405b5dcc517f6e, type: 2}
   moveTime: 0.15
   rotationTime: 0.15
+--- !u!65 &-7008271058149409651
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911771005560734969}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.5, z: 0.8}
+  m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!54 &3687182307874363082
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911771005560734969}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1001 &3610199339632147176
 PrefabInstance:
   m_ObjectHideFlags: 0

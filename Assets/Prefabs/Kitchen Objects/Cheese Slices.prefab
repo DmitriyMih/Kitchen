@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7911771005560734968}
   - component: {fileID: -2770028920842286857}
-  m_Layer: 0
+  - component: {fileID: -6339216576988316354}
+  - component: {fileID: -830584013720928387}
+  m_Layer: 7
   m_Name: Cheese Slices
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +50,35 @@ MonoBehaviour:
   kitchenObjectSO: {fileID: 11400000, guid: 64eb34eae888a0344bc841334a1c852c, type: 2}
   moveTime: 0.15
   rotationTime: 0.15
+--- !u!65 &-6339216576988316354
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911771005560734969}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.5, z: 0.8}
+  m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!54 &-830584013720928387
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911771005560734969}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1001 &479094087426260629
 PrefabInstance:
   m_ObjectHideFlags: 0
