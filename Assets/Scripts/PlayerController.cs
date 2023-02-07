@@ -11,10 +11,6 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     private GameInput gameInput;
 
     [Header("Move Settings")]
-    //[SerializeField] private float playerRadius = 0.7f;
-    //[SerializeField] private float playerHeigh = 2f;
-    //[SerializeField] private float deadZoneValue = 0.5f;
-
     private CharacterController characterController;
     [SerializeField, Space] private bool isWalking;
     public bool IsWalking
@@ -44,6 +40,12 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
         public BaseCounter selectedCounter;
+    }
+
+    public event EventHandler<OnSelectedkitchenObjectChangedEventArgs> OnSelectedKitchenObjectChanged;
+    public class OnSelectedkitchenObjectChangedEventArgs : EventArgs
+    {
+        public KitchenObject selectedKitchenObject;
     }
 
     public PlayerController() { }
@@ -82,7 +84,7 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
         if (selectedKitchenObject != null)
         {
             selectedKitchenObject.SetKitchenObjectParent(this);
-            selectedKitchenObject = null;
+            SetSelectedKitchenObject(null);
         }
     }
 
@@ -103,9 +105,20 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     private void SetSelectedCounter(BaseCounter selectedCounter)
     {
         this.selectedCounter = selectedCounter;
+
         OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
         {
             selectedCounter = selectedCounter
+        });
+    }
+
+    private void SetSelectedKitchenObject(KitchenObject selectedKitchenObject)
+    {
+        this.selectedKitchenObject = selectedKitchenObject;
+
+        OnSelectedKitchenObjectChanged?.Invoke(this, new OnSelectedkitchenObjectChangedEventArgs
+        {
+            selectedKitchenObject = selectedKitchenObject
         });
     }
 
@@ -129,12 +142,11 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
             if (raycastHit.transform.TryGetComponent(out KitchenObject kitchenObject))
             {
-                Debug.Log(kitchenObject);
                 if (!HasKitchenObject())
-                    selectedKitchenObject = kitchenObject;
+                    SetSelectedKitchenObject(kitchenObject);
             }
             else
-                kitchenObject = null;
+                SetSelectedKitchenObject(null);
         }
         else
             SetSelectedCounter(null);

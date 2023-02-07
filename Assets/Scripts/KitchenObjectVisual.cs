@@ -2,25 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectedCounterVisual : MonoBehaviour
+public class KitchenObjectVisual : MonoBehaviour
 {
     [SerializeField] private GameObject[] visualGameObjectArray;
-    [SerializeField] private BaseCounter baseCounter;
+    [SerializeField] private KitchenObject kitchenObject;
 
     private void Awake()
     {
-        baseCounter = GetComponent<BaseCounter>();
-        Hide();
+        kitchenObject = GetComponent<KitchenObject>();
     }
 
     private void Start()
     {
-        PlayerController.Instance.OnSelectedCounterChanged += PlayerController_OnSelectedCounterChanged;
+        PlayerController.Instance.OnSelectedKitchenObjectChanged += PlayerController_OnSelectedKitchenObjectChanged;
     }
 
-    private void PlayerController_OnSelectedCounterChanged(object sender, PlayerController.OnSelectedCounterChangedEventArgs e)
+    private void PlayerController_OnSelectedKitchenObjectChanged(object sender, PlayerController.OnSelectedkitchenObjectChangedEventArgs e)
     {
-        if (e.selectedCounter == baseCounter)
+        if (e.selectedKitchenObject == kitchenObject)
             Show();
         else
             Hide();
@@ -33,7 +32,7 @@ public class SelectedCounterVisual : MonoBehaviour
             //Debug.Log("Show - " + gameObject);
             if (visualGameObjectArray[i] == null)
             {
-                Debug.LogError("Visual object is null");
+                Debug.LogError("Visual object is null | " + gameObject);
                 continue;
             }
 
@@ -47,7 +46,7 @@ public class SelectedCounterVisual : MonoBehaviour
         {
             if (visualGameObjectArray[i] == null)
             {
-                Debug.LogError("Visual object is null");
+                Debug.LogError("Visual object is null | " + gameObject);
                 continue;
             }
 
