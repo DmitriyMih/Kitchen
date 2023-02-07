@@ -127,9 +127,11 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
             return;
 
         Vector2 inputVector = gameInput.GetMovementVector();
-        Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
+        IsWalking = inputVector != Vector2.zero;
 
-        IsWalking = moveDirection != Vector3.zero;
+        float handleGravity = HandleGravity();
+        Vector3 moveDirection = new Vector3(inputVector.x, handleGravity, inputVector.y);
+
         characterController.Move(moveDirection * player.moveSpeed * Time.deltaTime);
     }
 
@@ -147,6 +149,11 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
             Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, player.rotationSpeed * Time.deltaTime);
         }
+    }
+
+    private float HandleGravity()
+    {
+        return characterController.isGrounded ? -0.05f : -9.8f;
     }
 
     #region Ikitchen Interface
