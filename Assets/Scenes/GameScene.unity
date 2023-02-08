@@ -18261,6 +18261,7 @@ GameObject:
   - component: {fileID: 6790497633090872562}
   - component: {fileID: 6790497633090872568}
   - component: {fileID: 6790497633090872563}
+  - component: {fileID: 6790497633090872569}
   m_Layer: 6
   m_Name: Delivery Counter
   m_TagString: Untagged
@@ -18282,6 +18283,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   counterTopPoint: {fileID: 6790497634298620980}
   kitchenObject: {fileID: 0}
+  destroyTime: 0.5
+--- !u!114 &6790497633090872569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6790497633090872567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53d56b7e53ec2b47a5b8debad4e9a57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recipeListSO: {fileID: 11400000, guid: 1a42b8930b1e28d4dbeac38c5d6ce7e2, type: 2}
 --- !u!4 &6790497634298620980
 Transform:
   m_ObjectHideFlags: 0
