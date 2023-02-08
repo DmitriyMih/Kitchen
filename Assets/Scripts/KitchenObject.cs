@@ -76,10 +76,10 @@ public class KitchenObject : MonoBehaviour
         return kitchenObjectSO;
     }
 
-    public void DestroySelf()
+    public void DestroySelf(float destroyTime = 0f)
     {
         kitchenObjectParent.ClearKitchenObject();
-        Destroy(gameObject);
+        Destroy(gameObject, destroyTime);
     }
 
     public bool TryGetPlate(out PlateKitchenObject plateKitchenObject)
