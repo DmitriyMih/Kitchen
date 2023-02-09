@@ -13,15 +13,14 @@ public class RecipeTemplate : MonoBehaviour
 
     public void SetRecipeSO(RecipeSO recipeSO)
     {
-        ingridientImage.gameObject.SetActive(true);
+        ingridientImage.gameObject.SetActive(false);
         recipeNameText.text = recipeSO.name;
 
         for (int i = 0; i < recipeSO.kitchenObjectSOList.Count; i++)
         {
             Image image = Instantiate(ingridientImage, content);
             image.sprite = recipeSO.kitchenObjectSOList[i].sprite;
+            image.gameObject.SetActive(true);
         }
-
-        ingridientImage.gameObject.SetActive(false);
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc71fa57c682b4e4190f3cae1d1a9212, type: 3}
+  m_Name: Mega Rare Burger
+  m_EditorClassIdentifier: 
+  kitchenObjectSOList:
+  - {fileID: 11400000, guid: 28d48f7cf2cb4af49b5f0fda71ef2a9e, type: 2}
+  - {fileID: 11400000, guid: f967f810bfa76db41bc760822b2fad04, type: 2}
+  - {fileID: 11400000, guid: 64eb34eae888a0344bc841334a1c852c, type: 2}
+  - {fileID: 11400000, guid: 921ca7c358ca58f43a405b5dcc517f6e, type: 2}
+  - {fileID: 11400000, guid: 13f6da28aab9fa44dab02901129e2a95, type: 2}
+  recipeName: Cheeseburger
