@@ -8,7 +8,7 @@ public class AudioClepRefsSO : ScriptableObject
     public AudioClip[] chop;
     public AudioClip[] deliveryFail;
     public AudioClip[] deliverySuccess;
-    public AudioClip[] chopfootstep;
+    public AudioClip[] footstep;
     public AudioClip[] objectDrop;
     public AudioClip[] objectPickup;
     public AudioClip stoveSizzle;

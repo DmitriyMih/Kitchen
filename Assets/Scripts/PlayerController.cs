@@ -106,6 +106,8 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     {
         HandleMovement();
         HandleRotation();
+        
+        CheckGround();
         HandleOnInteraction();
     }
 
@@ -127,6 +129,25 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
         {
             selectedKitchenObject = selectedKitchenObject
         });
+    }
+
+    [Header("Grounded Settings")]
+
+    [SerializeField] private LayerMask currentGroundLayerMask;
+    public LayerMask CurrentGroundLayerMask => currentGroundLayerMask;
+    public bool IsGrounded => characterController.isGrounded;
+
+    private void CheckGround()
+    {
+        if (!IsGrounded)
+            return;
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit))
+        {
+            currentGroundLayerMask = 1 << hit.collider.gameObject.layer;
+            //Debug.Log($"Object {hit.collider.gameObject} | Layer Is {hit.collider.gameObject.layer}");
+        }
     }
 
     private void HandleOnInteraction()

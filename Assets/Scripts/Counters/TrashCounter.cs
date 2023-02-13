@@ -19,8 +19,12 @@ public class TrashCounter : BaseCounter
             //  If Plate
             if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
             {
-                plateKitchenObject.ClearThePlate();
-                OnAnyObjectTrashed?.Invoke(this, EventArgs.Empty);
+                if (plateKitchenObject.GetKitchenObjectSOListCount() > 0)
+                {
+                    OnAnyObjectTrashed?.Invoke(this, EventArgs.Empty);
+                    plateKitchenObject.ClearThePlate();
+                }
+
                 return;
             }
             else

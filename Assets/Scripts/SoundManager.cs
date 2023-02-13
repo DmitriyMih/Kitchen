@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance { get; private set; }
     [SerializeField] private AudioClepRefsSO audioClepRefsSO;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         CuttingCounter.OnAnyCut += Instance_OnAnyCut;
         PlayerController.OnPickedSomething += Instance_OnPickedSomething;
         BaseCounter.OnAnyObjectplacedHere += BaseCounter_OnAnyObjectplacedHere;
-        TrashCounter.OnAnyObjectTrashed += TrashCounter_OnAnyObjectTrashed;         
+        TrashCounter.OnAnyObjectTrashed += TrashCounter_OnAnyObjectTrashed;
 
         if (DeliveryManager.Instance != null)
         {
@@ -20,6 +26,11 @@ public class SoundManager : MonoBehaviour
         }
         else
             Debug.LogError("Delievry Manager Is Null");
+    }
+
+    public void PlayFootstepsSound(AudioClip audioClip, Vector3 position, float volume = 1f)
+    {
+        PlaySound(audioClip, position, volume);
     }
 
     private void TrashCounter_OnAnyObjectTrashed(object sender, System.EventArgs e)
