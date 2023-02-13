@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeliveryCounter : BaseCounter
 {
+    public static DeliveryCounter Instance;
     [SerializeField] private float destroyTime = 0.5f;
 
     public override void Interact(PlayerController player)

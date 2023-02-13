@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class TrashCounter : BaseCounter
     [SerializeField] private float objectMoveTime = 0.4f;
     [SerializeField] private float objectScaleTime = 0.4f;
 
+    public static EventHandler OnAnyObjectTrashed;
+
     public override void Interact(PlayerController player)
     {
         if (player.HasKitchenObject())
@@ -17,6 +20,7 @@ public class TrashCounter : BaseCounter
             if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
             {
                 plateKitchenObject.ClearThePlate();
+                OnAnyObjectTrashed?.Invoke(this, EventArgs.Empty);
                 return;
             }
             else
@@ -25,7 +29,11 @@ public class TrashCounter : BaseCounter
                 KitchenObject kitchenObject = GetKitchenObject();
 
                 kitchenObject.transform.DOScale(Vector3.zero, objectScaleTime);
-                kitchenObject.transform.DOMove(bottomPoint.position, objectMoveTime).OnComplete(() => kitchenObject.DestroySelf());
+                kitchenObject.transform.DOMove(bottomPoint.position, objectMoveTime).OnComplete(() =>
+                {
+                    kitchenObject.DestroySelf();
+                    OnAnyObjectTrashed?.Invoke(this, EventArgs.Empty);
+                });
             }
         }
     }
