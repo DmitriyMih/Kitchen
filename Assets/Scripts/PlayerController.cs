@@ -104,14 +104,24 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void Update()
     {
-        if(KitchenGameManager.Instance!=null)
-        if (!KitchenGameManager.Instance.IsGamePlaying()) return;
-        
+        if (KitchenGameManager.Instance != null)
+            if (!KitchenGameManager.Instance.IsGamePlaying())
+            {
+                Stop();
+                return;
+            }
+
         HandleMovement();
         HandleRotation();
-        
+
         CheckGround();
         HandleOnInteraction();
+    }
+
+    private void Stop()
+    {
+        IsWalking = false; ;
+        characterController.Move(Vector3.zero);
     }
 
     private void SetSelectedCounter(BaseCounter selectedCounter)

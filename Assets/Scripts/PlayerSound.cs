@@ -55,8 +55,7 @@ public class PlayerSound : MonoBehaviour
         if (!isFind)
             layerSound = layerFootstesSoundSO.defaultLayerSound;
 
-        Debug.Log($"Layer mask {layerMask } | Is Find - {isFind} | Layer Sound Mask {layerSound.layerMask}");
-
+        //Debug.Log($"Layer mask {layerMask } | Is Find - {isFind} | Layer Sound Mask {layerSound.layerMask}");
         if (layerSound == null) { Debug.LogError("Layer Sound Not Find"); return null; }
         AudioClip audioClip = layerSound.layerFootstepsSound[Random.Range(0, layerSound.layerFootstepsSound.Count)];
 
