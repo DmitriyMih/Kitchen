@@ -28,6 +28,9 @@ public class DeliveryManager : MonoBehaviour
 
     private void Update()
     {
+        if (KitchenGameManager.Instance != null)
+            if (!KitchenGameManager.Instance.IsGamePlaying()) return;
+
         if (waitingRecipeSOList.Count >= waitingRecipesMax)
             return;
 

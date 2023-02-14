@@ -104,6 +104,9 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void Update()
     {
+        if(KitchenGameManager.Instance!=null)
+        if (!KitchenGameManager.Instance.IsGamePlaying()) return;
+        
         HandleMovement();
         HandleRotation();
         
@@ -113,6 +116,9 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void SetSelectedCounter(BaseCounter selectedCounter)
     {
+        if (KitchenGameManager.Instance != null)
+            if (!KitchenGameManager.Instance.IsGamePlaying()) return;
+
         this.selectedCounter = selectedCounter;
 
         OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
@@ -123,6 +129,9 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void SetSelectedKitchenObject(KitchenObject selectedKitchenObject)
     {
+        if (KitchenGameManager.Instance != null)
+            if (!KitchenGameManager.Instance.IsGamePlaying()) return;
+
         this.selectedKitchenObject = selectedKitchenObject;
 
         OnSelectedKitchenObjectChanged?.Invoke(this, new OnSelectedkitchenObjectChangedEventArgs
