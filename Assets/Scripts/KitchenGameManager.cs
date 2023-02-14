@@ -82,6 +82,11 @@ public class KitchenGameManager : MonoBehaviour
         return state == State.GamePlaying;
     }
 
+    public bool IsGameOver()
+    {
+        return state == State.GameOver;
+    }
+
     public bool IsCountdownToStartActive()
     {
         return state == State.CountdownToStart;

@@ -12,8 +12,9 @@ public class DeliveryManager : MonoBehaviour
 
     private float spawnRecipeTimer;
     [SerializeField] private float spawnRecipeTimerMax = 4f;
-
     [SerializeField] private int waitingRecipesMax = 4;
+
+    private int successfulRecipesAmount;
 
     public event EventHandler OnRecipeSpawned;
     public event EventHandler OnRecipeCompleted;
@@ -78,6 +79,8 @@ public class DeliveryManager : MonoBehaviour
 
                 if (plateContentsMatchesRecipe)
                 {
+                    successfulRecipesAmount++;
+
                     waitingRecipeSOList.RemoveAt(i);
 
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
@@ -88,6 +91,11 @@ public class DeliveryManager : MonoBehaviour
         }
 
         OnRecipeFailed?.Invoke(this, EventArgs.Empty);
+    }
+
+    public int GetSuccessfulRecipesAmount()
+    {
+        return successfulRecipesAmount;
     }
 
     public List<RecipeSO> GetWaitingRecipeSOList()
