@@ -25,6 +25,7 @@ public class KitchenGameManager : MonoBehaviour
     [SerializeField] private float gamePlayingTimerMax = 10f;
 
     public event EventHandler OnStateChanged;
+    public event Action<float> OnGamePlayingTime;
 
     private void Awake()
     {
@@ -63,6 +64,7 @@ public class KitchenGameManager : MonoBehaviour
 
             case State.GamePlaying:
                 gamePlayingTimer -= Time.deltaTime;
+                OnGamePlayingTime?.Invoke(GetGamePlayingTimerNormalized());
 
                 if (gamePlayingTimer < 0f)
                 {
@@ -95,5 +97,10 @@ public class KitchenGameManager : MonoBehaviour
     public float GetCountdownToStartTimer()
     {
         return countdownToStartTimer;
+    }
+
+    private float GetGamePlayingTimerNormalized()
+    {
+        return gamePlayingTimer / gamePlayingTimerMax;
     }
 }
