@@ -27,6 +27,8 @@ public class KitchenGameManager : MonoBehaviour
     [SerializeField] private bool isGamePaused = false;
 
     public event EventHandler OnStateChanged;
+    public event Action<bool> OnGamePausedStateChanged;
+
     public event Action<float> OnGamePlayingTime;
 
     private void Awake()
@@ -38,14 +40,13 @@ public class KitchenGameManager : MonoBehaviour
 
     private void Start()
     {
-        if(GameInput.Instance!=null)
-        GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
+        if (GameInput.Instance != null)
+            GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
     }
 
     private void GameInput_OnPauseAction(object sender, EventArgs e)
     {
         PauseGame();
-        Debug.Log("Pause");
     }
 
     private void Update()
@@ -93,13 +94,15 @@ public class KitchenGameManager : MonoBehaviour
         }
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
         isGamePaused = !isGamePaused;
         if (isGamePaused)
             Time.timeScale = 0f;
         else
             Time.timeScale = 1f;
+
+        OnGamePausedStateChanged?.Invoke(isGamePaused);
     }
 
     public bool IsGamePlaying()

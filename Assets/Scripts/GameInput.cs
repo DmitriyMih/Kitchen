@@ -36,7 +36,6 @@ public class GameInput : MonoBehaviour
 
     private void PlayerInput_PausePerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Debug.Log("Pause");
         OnPauseAction?.Invoke(this, EventArgs.Empty);
     }
 
