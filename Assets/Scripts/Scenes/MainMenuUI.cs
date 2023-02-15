@@ -17,6 +17,6 @@ public class MainMenuUI : MonoBehaviour
 
         if (quitButton == null) Debug.LogError("QUit Button Is NUll");
         else
-            playButton.onClick.AddListener(() => Application.Quit());
+            quitButton.onClick.AddListener(() => Application.Quit());
     }
 }

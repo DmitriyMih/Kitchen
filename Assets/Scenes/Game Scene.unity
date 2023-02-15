@@ -3069,7 +3069,7 @@ MonoBehaviour:
   state: 0
   waitingToStartTimerMax: 1
   countdownToStartTimerMax: 3
-  gamePlayingTimerMax: 20
+  gamePlayingTimerMax: 40
 --- !u!4 &845739934
 Transform:
   m_ObjectHideFlags: 0
