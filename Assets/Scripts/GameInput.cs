@@ -5,32 +5,49 @@ using UnityEngine;
 
 public class GameInput : MonoBehaviour
 {
+    public static GameInput Instance;
+
     public event EventHandler OnInteractAction;
     public event EventHandler OnInteractAlternateAction;
+    public event EventHandler OnPauseAction;
 
     private PlayerInput playerInput;
 
     private void Awake()
     {
+        Instance = this;
+
         playerInput = new PlayerInput();
         playerInput.Player.Enable();
 
-        playerInput.Player.Interact.performed += InteractPerformed;
-        playerInput.Player.InteractAlternate.performed += InteractAlternatePerformed;
+        playerInput.Player.Interact.performed += PlayerInput_InteractPerformed;
+        playerInput.Player.InteractAlternate.performed += PlayerInput_InteractAlternatePerformed;
+        playerInput.Player.Pause.performed += PlayerInput_PausePerformed;
     }
 
-    private void InteractAlternatePerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void OnDestroy()
     {
-        //Debug.Log("Interact Alternative");
-        if (OnInteractAlternateAction != null)
-            OnInteractAlternateAction?.Invoke(this, EventArgs.Empty);
+        playerInput.Player.Interact.performed -= PlayerInput_InteractPerformed;
+        playerInput.Player.InteractAlternate.performed -= PlayerInput_InteractAlternatePerformed;
+        playerInput.Player.Pause.performed -= PlayerInput_PausePerformed;
+
+        playerInput.Dispose();
     }
 
-    private void InteractPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void PlayerInput_PausePerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        //Debug.Log("Interact");
-        if (OnInteractAction != null)
-            OnInteractAction?.Invoke(this, EventArgs.Empty);
+        Debug.Log("Pause");
+        OnPauseAction?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void PlayerInput_InteractAlternatePerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnInteractAlternateAction?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void PlayerInput_InteractPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetMovementVector()

@@ -1,16 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI recipesDeliveredText;
     [SerializeField] private GameObject gameOverContent;
 
+    [SerializeField] private Button quitButton;
+
     private void Awake()
     {
         Hide();
+
+        if (quitButton != null)
+            quitButton.onClick.AddListener(() => Loader.Load(Loader.Scene.MainMenuScene));
     }
 
     private void Start()
