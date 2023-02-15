@@ -42,6 +42,7 @@ public class GameInput : MonoBehaviour
 
     private void PlayerInput_InteractAlternatePerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
+        Debug.Log("Interact Alternate");
         OnInteractAlternateAction?.Invoke(this, EventArgs.Empty);
     }
 
