@@ -7,11 +7,15 @@ public class GamePauseUI : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverContent;
 
-    [SerializeField] private Button exitButton;
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button mainMenuButton;
 
     private void Awake()
     {
         Hide();
+
+        if (mainMenuButton != null)
+            mainMenuButton.onClick.AddListener(() => Loader.Load(Loader.Scene.MainMenuScene));
     }
 
     private void Start()
@@ -20,8 +24,8 @@ public class GamePauseUI : MonoBehaviour
         {
             KitchenGameManager.Instance.OnGamePausedStateChanged += Instance_OnGamePausedStateChanged;
 
-            if (exitButton != null)
-                exitButton.onClick.AddListener(() => KitchenGameManager.Instance.PauseGame());
+            if (resumeButton != null)
+                resumeButton.onClick.AddListener(() => KitchenGameManager.Instance.PauseGame());
         }
     }
 
