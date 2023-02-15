@@ -7128,6 +7128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerFillImage: {fileID: 612257420}
+  gameTimerContent: {fileID: 0}
 --- !u!1 &1838503211
 GameObject:
   m_ObjectHideFlags: 0
