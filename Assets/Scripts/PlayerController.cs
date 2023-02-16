@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
     [Header("Actions")]
     public Action<bool> moveEvent;
     public static EventHandler OnPickedSomething;
+    public static void ResetStaticData()
+    {
+        OnPickedSomething = null;
+    }
+
 
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs

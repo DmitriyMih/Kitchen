@@ -9,6 +9,11 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
     [SerializeField] protected KitchenObject kitchenObject;
 
     public static event EventHandler OnAnyObjectplacedHere;
+    public static void ResetStaticData()
+    {
+        OnAnyObjectplacedHere = null;
+    }
+
 
     public virtual void Interact(PlayerController player) { }
     public virtual void InteractAlternate(PlayerController player) { }

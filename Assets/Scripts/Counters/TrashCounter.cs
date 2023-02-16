@@ -11,6 +11,10 @@ public class TrashCounter : BaseCounter
     [SerializeField] private float objectScaleTime = 0.4f;
 
     public static EventHandler OnAnyObjectTrashed;
+    new public static void ResetStaticData()
+    {
+        OnAnyObjectTrashed = null;
+    }
 
     public override void Interact(PlayerController player)
     {
