@@ -5,7 +5,9 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
-    [SerializeField] private AudioClepRefsSO audioClepRefsSO;
+    [SerializeField] private AudioClepRefsSO audioClipRefsSO;
+
+    [SerializeField] private float volumeMultiplier = 1f;
 
     private void Awake()
     {
@@ -37,40 +39,40 @@ public class SoundManager : MonoBehaviour
     {
         TrashCounter trashCounter = sender as TrashCounter;
         Vector3 position = trashCounter == null ? Camera.main.transform.position : trashCounter.transform.position;
-        PlaySound(audioClepRefsSO.trash, position);
+        PlaySound(audioClipRefsSO.trash, position);
     }
 
     private void BaseCounter_OnAnyObjectplacedHere(object sender, System.EventArgs e)
     {
         BaseCounter baseCounter = sender as BaseCounter;
         Vector3 position = baseCounter == null ? Camera.main.transform.position : baseCounter.transform.position;
-        PlaySound(audioClepRefsSO.objectDrop, position);
+        PlaySound(audioClipRefsSO.objectDrop, position);
     }
 
     private void Instance_OnPickedSomething(object sender, System.EventArgs e)
     {
         PlayerController playerCounter = sender as PlayerController;
         Vector3 position = playerCounter == null ? Camera.main.transform.position : playerCounter.transform.position;
-        PlaySound(audioClepRefsSO.objectPickup, position);
+        PlaySound(audioClipRefsSO.objectPickup, position);
     }
 
     private void Instance_OnAnyCut(object sender, System.EventArgs e)
     {
         CuttingCounter cuttingCounter = sender as CuttingCounter;
         Vector3 position = cuttingCounter == null ? Camera.main.transform.position : cuttingCounter.transform.position;
-        PlaySound(audioClepRefsSO.chop, position);
+        PlaySound(audioClipRefsSO.chop, position);
     }
 
     private void Instance_OnRecipeSucces(object sender, System.EventArgs e)
     {
         Vector3 position = DeliveryCounter.Instance == null ? Camera.main.transform.position : DeliveryCounter.Instance.transform.position;
-        PlaySound(audioClepRefsSO.deliverySuccess, position);
+        PlaySound(audioClipRefsSO.deliverySuccess, position);
     }
 
     private void Instance_OnRecipeFailed(object sender, System.EventArgs e)
     {
         Vector3 position = DeliveryCounter.Instance == null ? Camera.main.transform.position : DeliveryCounter.Instance.transform.position;
-        PlaySound(audioClepRefsSO.deliveryFail, position);
+        PlaySound(audioClipRefsSO.deliveryFail, position);
     }
 
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
@@ -80,6 +82,18 @@ public class SoundManager : MonoBehaviour
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
     {
-        AudioSource.PlayClipAtPoint(audioClip, position, volume);
+        AudioSource.PlayClipAtPoint(audioClip, position, volume * volumeMultiplier);
+    }
+
+    public void ChangeVolume()
+    {
+        volumeMultiplier += 0.1f;
+        if (volumeMultiplier >= 1.1f)
+            volumeMultiplier = 0f;
+    }
+
+    public float GetVolume()
+    {
+        return volumeMultiplier;
     }
 }
