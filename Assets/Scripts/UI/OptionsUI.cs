@@ -24,6 +24,7 @@ public class OptionsUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Hide();
 
         if (soundEffectsButton != null)
             soundEffectsButton.onClick.AddListener(() =>
@@ -48,14 +49,26 @@ public class OptionsUI : MonoBehaviour
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.OnSoundVolumeChanged += UpdateSoundVisualText;
-            SoundManager.Instance.Volume = soundVolume;
+            SoundManager.Instance.Volume = SaveManager.LoadSoundValue();
         }
 
         if (MusicManager.Instance != null)
         {
             MusicManager.Instance.OnMusicVolumeChanged += UpdateMusicVisualText;
-            MusicManager.Instance.Volume = musicVolume;
+            MusicManager.Instance.Volume = SaveManager.LoadMusicValue();
         }
+    }
+
+    private void Start()
+    {
+        if(KitchenGameManager.Instance!=null)
+            KitchenGameManager.Instance.OnGamePausedStateChanged += KitchenGameManager_OnGamePausedStateChanged;
+    }
+
+    private void KitchenGameManager_OnGamePausedStateChanged(bool pauseState)
+    {
+        if (!pauseState)
+            Hide();
     }
 
     public void Show()

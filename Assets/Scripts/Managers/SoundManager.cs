@@ -8,15 +8,16 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
     [SerializeField] private AudioClepRefsSO audioClipRefsSO;
 
-    private int volume;
+    [SerializeField] private int volume;
     public int Volume
     {
         get => volume;
         set
         {
             volume = value;
-            Debug.Log("Invoke Sound");
+            //Debug.Log("Invoke Sound");
             OnSoundVolumeChanged?.DynamicInvoke(volume);
+            SaveManager.SaveSoundValue(value);
         }
     }
 
@@ -37,7 +38,7 @@ public class SoundManager : MonoBehaviour
         if (DeliveryManager.Instance != null)
         {
             DeliveryManager.Instance.OnRecipeSuccess += Instance_OnRecipeSucces;
-            DeliveryManager.Instance.OnRecipeFailed += Instance_OnRecipeFailed; ;
+            DeliveryManager.Instance.OnRecipeFailed += Instance_OnRecipeFailed;
         }
         else
             Debug.LogError("Delievry Manager Is Null");

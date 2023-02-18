@@ -17,7 +17,7 @@ public class GamePauseUI : MonoBehaviour
 
         if (mainMenuButton != null)
             mainMenuButton.onClick.AddListener(() => Loader.Load(Loader.Scene.MainMenuScene));
-        else Debug.LogError($"{gameObject.name} | Main Button | Is Null" %Colorize.Yellow %FontFormat.Bold);
+        else Debug.LogError($"{gameObject.name} | Main Button | Is Null" % Colorize.Yellow % FontFormat.Bold);
 
         if (optionsButton != null)
             optionsButton.onClick.AddListener(() =>
@@ -36,6 +36,7 @@ public class GamePauseUI : MonoBehaviour
 
             if (resumeButton != null)
                 resumeButton.onClick.AddListener(() => KitchenGameManager.Instance.PauseGame());
+
             else Debug.LogError($"{gameObject.name} | Resume Button | Is Null" % Colorize.Yellow % FontFormat.Bold);
         }
     }

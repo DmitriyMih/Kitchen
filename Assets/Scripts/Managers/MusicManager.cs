@@ -10,18 +10,19 @@ public class MusicManager : MonoBehaviour
 
     private AudioSource audioSource;
 
-    [SerializeField] private int volume = 3;
+    [SerializeField] private int volume;
     public int Volume
     {
         get => volume;
         set
         {
             volume = value;
-            Debug.Log("Invoke Music");
+            //Debug.Log("Invoke Music");
             if (audioSource != null)
                 audioSource.volume = volume / 10f;
 
             OnMusicVolumeChanged?.Invoke(volume);
+            SaveManager.SaveMusicValue(value);
         }
     }
 
@@ -31,7 +32,6 @@ public class MusicManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         Instance = this;
-        Volume = volume;
     }
 
     public void ChangeVolume()
