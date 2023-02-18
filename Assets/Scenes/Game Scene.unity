@@ -1839,8 +1839,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0eddc204590624ab0858024f6e2e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contentPanel: {fileID: 0}
   soundEffectsButton: {fileID: 618420695}
   musicButton: {fileID: 722166676}
+  closeButton: {fileID: 0}
   soundEffectsText: {fileID: 1912580188}
   musicText: {fileID: 15148159}
   soundVolume: 7
@@ -7117,6 +7119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverContent: {fileID: 2034855994}
   resumeButton: {fileID: 949755887}
+  optionsButton: {fileID: 1981164111}
   mainMenuButton: {fileID: 1056276515}
 --- !u!1 &1510426197
 GameObject:
