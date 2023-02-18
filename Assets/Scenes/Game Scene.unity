@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 15148160}
   - component: {fileID: 15148159}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Music Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -887,6 +887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 140761667}
+  - component: {fileID: 140761669}
   - component: {fileID: 140761668}
   m_Layer: 0
   m_Name: Music Manager
@@ -1006,6 +1007,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &140761669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140761666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3fe3850c2cb65479761399d9d28692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 3
 --- !u!1 &182769433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,8 +1624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85550a91c2b73054999f641f95c5b712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClepRefsSO: {fileID: 11400000, guid: c82fd7bd77c13ab419e10ec86acc118d, type: 2}
-  volume: 0
+  audioClipRefsSO: {fileID: 11400000, guid: c82fd7bd77c13ab419e10ec86acc118d, type: 2}
 --- !u!1001 &293181138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1738,6 +1751,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffectsButton: {fileID: 618420695}
   musicButton: {fileID: 722166676}
+  soundEffectsText: {fileID: 1912580188}
+  musicText: {fileID: 15148159}
+  soundVolume: 5
+  musicVolume: 0
 --- !u!1 &342537436
 GameObject:
   m_ObjectHideFlags: 0
@@ -5545,6 +5562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstepTimerMax: 0.1
+  volume: 1
   layerFootstesSoundSO: {fileID: 11400000, guid: 2ac059870f23f9e4d9af1ee172a92001, type: 2}
 --- !u!1001 &1100572746
 PrefabInstance:
@@ -8955,7 +8973,7 @@ GameObject:
   - component: {fileID: 1912580189}
   - component: {fileID: 1912580188}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Sound Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

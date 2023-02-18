@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,19 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
     [SerializeField] private AudioClepRefsSO audioClipRefsSO;
 
-    [SerializeField] private float volumeMultiplier = 1f;
+    private int volume;
+    public int Volume
+    {
+        get => volume;
+        set
+        {
+            volume = value;
+            Debug.Log("Invoke Sound");
+            OnSoundVolumeChanged?.DynamicInvoke(volume);
+        }
+    }
+
+    public Action<int> OnSoundVolumeChanged;
 
     private void Awake()
     {
@@ -77,23 +90,19 @@ public class SoundManager : MonoBehaviour
 
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
     {
-        PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
+        PlaySound(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)], position, volume);
     }
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
     {
-        AudioSource.PlayClipAtPoint(audioClip, position, volume * volumeMultiplier);
+        AudioSource.PlayClipAtPoint(audioClip, position, volume * (this.volume / 10));
     }
 
     public void ChangeVolume()
     {
-        volumeMultiplier += 0.1f;
-        if (volumeMultiplier >= 1.1f)
-            volumeMultiplier = 0f;
-    }
-
-    public float GetVolume()
-    {
-        return volumeMultiplier;
+        if (Volume > 10)
+            Volume = 0;
+        else
+            Volume += 1;
     }
 }
