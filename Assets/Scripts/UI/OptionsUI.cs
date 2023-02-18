@@ -6,8 +6,14 @@ using TMPro;
 
 public class OptionsUI : MonoBehaviour
 {
+    public static OptionsUI Instance { get; private set; }
+
+    [SerializeField] private GameObject contentPanel;
+
+    [Space()]
     [SerializeField] private Button soundEffectsButton;
     [SerializeField] private Button musicButton;
+    [SerializeField] private Button closeButton;
 
     [SerializeField] private TextMeshProUGUI soundEffectsText;
     [SerializeField] private TextMeshProUGUI musicText;
@@ -17,12 +23,15 @@ public class OptionsUI : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         if (soundEffectsButton != null)
             soundEffectsButton.onClick.AddListener(() =>
             {
                 if (SoundManager.Instance != null)
                     SoundManager.Instance.ChangeVolume();
             });
+        else Debug.LogError($"{gameObject} | Sound Effects Button | Is Null");
 
         if (musicButton != null)
             musicButton.onClick.AddListener(() =>
@@ -30,13 +39,18 @@ public class OptionsUI : MonoBehaviour
                 if (MusicManager.Instance != null)
                     MusicManager.Instance.ChangeVolume();
             });
+        else Debug.LogError($"{gameObject} | Music Button | Is Null");
+
+        if (closeButton != null)
+            closeButton.onClick.AddListener(() => Hide());
+        else Debug.LogError($"{gameObject} | Close Button | Is Null");
 
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.OnSoundVolumeChanged += UpdateSoundVisualText;
             SoundManager.Instance.Volume = soundVolume;
         }
-        
+
         if (MusicManager.Instance != null)
         {
             MusicManager.Instance.OnMusicVolumeChanged += UpdateMusicVisualText;
@@ -44,16 +58,28 @@ public class OptionsUI : MonoBehaviour
         }
     }
 
+    public void Show()
+    {
+        if (contentPanel != null)
+            contentPanel.SetActive(true);
+        else Debug.LogError($"{gameObject} | Content Panel | Is Null");
+    }
+
+    public void Hide()
+    {
+        if (contentPanel != null)
+            contentPanel.SetActive(false);
+        else Debug.LogError($"{gameObject} | Content Panel | Is Null");
+    }
+
     private void UpdateSoundVisualText(int volume)
     {
-        Debug.Log("Update Sound");
         if (soundEffectsText != null)
             soundEffectsText.text = "SOUND EFFECTS: " + Mathf.Round(volume * 10);
     }
 
     private void UpdateMusicVisualText(int volume)
     {
-        Debug.Log("Update Music");
         if (musicText != null)
             musicText.text = "MUSIC: " + Mathf.Round(volume * 10);
     }
