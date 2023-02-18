@@ -19,7 +19,7 @@ public class MusicManager : MonoBehaviour
             volume = value;
             Debug.Log("Invoke Music");
             if (audioSource != null)
-                audioSource.volume = volume;
+                audioSource.volume = volume / 10f;
 
             OnMusicVolumeChanged?.Invoke(volume);
         }
@@ -36,7 +36,7 @@ public class MusicManager : MonoBehaviour
 
     public void ChangeVolume()
     {
-        if (Volume > 10)
+        if (Volume >= 10)
             Volume = 0;
         else
             Volume += 1;

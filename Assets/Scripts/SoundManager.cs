@@ -95,12 +95,12 @@ public class SoundManager : MonoBehaviour
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
     {
-        AudioSource.PlayClipAtPoint(audioClip, position, volume * (this.volume / 10));
+        AudioSource.PlayClipAtPoint(audioClip, position, volume * (this.volume / 10f));
     }
 
     public void ChangeVolume()
     {
-        if (Volume > 10)
+        if (Volume >= 10)
             Volume = 0;
         else
             Volume += 1;
