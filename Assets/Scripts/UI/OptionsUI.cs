@@ -31,7 +31,7 @@ public class OptionsUI : MonoBehaviour
                 if (SoundManager.Instance != null)
                     SoundManager.Instance.ChangeVolume();
             });
-        else Debug.LogError($"{gameObject} | Sound Effects Button | Is Null");
+        else Debug.LogError($"{gameObject.name} | Sound Effects Button | Is Null");
 
         if (musicButton != null)
             musicButton.onClick.AddListener(() =>
@@ -39,11 +39,11 @@ public class OptionsUI : MonoBehaviour
                 if (MusicManager.Instance != null)
                     MusicManager.Instance.ChangeVolume();
             });
-        else Debug.LogError($"{gameObject} | Music Button | Is Null");
+        else Debug.LogError($"{gameObject.name} | Music Button | Is Null");
 
         if (closeButton != null)
             closeButton.onClick.AddListener(() => Hide());
-        else Debug.LogError($"{gameObject} | Close Button | Is Null");
+        else Debug.LogError($"{gameObject.name} | Close Button | Is Null");
 
         if (SoundManager.Instance != null)
         {
@@ -62,14 +62,14 @@ public class OptionsUI : MonoBehaviour
     {
         if (contentPanel != null)
             contentPanel.SetActive(true);
-        else Debug.LogError($"{gameObject} | Content Panel | Is Null");
+        else Debug.LogError($"{gameObject.name} | Content Panel | Is Null");
     }
 
     public void Hide()
     {
         if (contentPanel != null)
             contentPanel.SetActive(false);
-        else Debug.LogError($"{gameObject} | Content Panel | Is Null");
+        else Debug.LogError($"{gameObject.name} | Content Panel | Is Null");
     }
 
     private void UpdateSoundVisualText(int volume)

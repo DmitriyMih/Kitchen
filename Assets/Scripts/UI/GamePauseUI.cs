@@ -13,11 +13,20 @@ public class GamePauseUI : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Hello Orange" %Colorize.Red);
+        Debug.Log("Hello Orange" %Colorize.Red %FontFormat.Bold);
+
+        Debug.LogError("Hello Orange" %Colorize.Orange);
+        Debug.LogError("Hello Orange" %Colorize.DarkOrange %FontFormat.Bold);
+
+        Debug.Log($"Hello Orange {Colorize.Yellow} Man");
+        Debug.LogError($"Hello Orange {+ %Colorize.Blue} Man");
+
         Hide();
 
         if (mainMenuButton != null)
             mainMenuButton.onClick.AddListener(() => Loader.Load(Loader.Scene.MainMenuScene));
-        else Debug.LogError($"{gameObject} | Main Button | Is Null");
+        else Debug.LogError($"{gameObject.name} | Main Button | Is Null");
 
         if (optionsButton != null)
             optionsButton.onClick.AddListener(() =>
@@ -25,7 +34,7 @@ public class GamePauseUI : MonoBehaviour
                 if (OptionsUI.Instance != null)
                     OptionsUI.Instance.Show();
             });
-        else Debug.LogError($"{gameObject} | Options Button | Is Null");
+        else Debug.LogError($"{gameObject.name} | Options Button | Is Null");
     }
 
     private void Start()
@@ -36,7 +45,7 @@ public class GamePauseUI : MonoBehaviour
 
             if (resumeButton != null)
                 resumeButton.onClick.AddListener(() => KitchenGameManager.Instance.PauseGame());
-            else Debug.LogError($"{gameObject} | Resume Button | Is Null");
+            else Debug.LogError($"{gameObject.name} | Resume Button | Is Null");
         }
     }
 
@@ -52,11 +61,13 @@ public class GamePauseUI : MonoBehaviour
     {
         if (gameOverContent != null)
             gameOverContent.SetActive(true);
+        else Debug.Log(string.Format($"{gameObject.name} | Game Over Content | Is Null ", Color.green));
     }
 
     private void Hide()
     {
         if (gameOverContent != null)
             gameOverContent.SetActive(false);
+        else Debug.Log(string.Format($"{gameObject.name} | Game Over Content | Is Null ", Color.green));
     }
 }
