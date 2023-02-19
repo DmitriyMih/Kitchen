@@ -38,6 +38,9 @@ public class GameOverUI : MonoBehaviour
 
         if (recipesDeliveredText != null && DeliveryManager.Instance != null)
             recipesDeliveredText.text = DeliveryManager.Instance.GetSuccessfulRecipesAmount().ToString();
+
+        if (quitButton != null)
+            quitButton.Select();
     }
 
     private void Hide()

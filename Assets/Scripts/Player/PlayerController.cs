@@ -80,6 +80,9 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void GameInputOnInteractAction(object sender, System.EventArgs e)
     {
+        if (KitchenGameManager.Instance != null)
+            if (!KitchenGameManager.Instance.IsGamePlaying()) return;
+
         //Debug.Log("Interact - " + selectedCounter);
         if (selectedCounter != null)
         {
@@ -102,6 +105,9 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void GameInputOnInteractAlternateAction(object sender, System.EventArgs e)
     {
+        if (KitchenGameManager.Instance != null)
+            if (!KitchenGameManager.Instance.IsGamePlaying()) return;
+
         //Debug.Log("Interact Alternate - " + selectedCounter);
         if (selectedCounter != null)
             selectedCounter.InteractAlternate(this);
@@ -176,6 +182,9 @@ public class PlayerController : MonoBehaviour, IKitchenObjectParent
 
     private void HandleOnInteraction()
     {
+        if (KitchenGameManager.Instance != null)
+            if (!KitchenGameManager.Instance.IsGamePlaying()) return;
+
         Vector2 inputVector = gameInput.GetMovementVector();
         Vector3 moveDirection = new Vector3(inputVector.x, 0, inputVector.y);
 

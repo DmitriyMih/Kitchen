@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,8 @@ public class OptionsUI : MonoBehaviour
     [SerializeField, Range(0, 10)] private int soundVolume;
     [SerializeField, Range(0, 10)] private int musicVolume;
 
+    private Action onCloseButtonAction;
+
     private void Awake()
     {
         Instance = this;
@@ -43,7 +46,11 @@ public class OptionsUI : MonoBehaviour
         else Debug.LogError($"{gameObject.name} | Music Button | Is Null" % Colorize.Yellow % FontFormat.Bold);
 
         if (closeButton != null)
-            closeButton.onClick.AddListener(() => Hide());
+            closeButton.onClick.AddListener(() =>
+            {
+                Hide();
+                onCloseButtonAction(); 
+            });
         else Debug.LogError($"{gameObject.name} | Close Button | Is Null" % Colorize.Yellow % FontFormat.Bold);
 
         if (SoundManager.Instance != null)
@@ -61,7 +68,7 @@ public class OptionsUI : MonoBehaviour
 
     private void Start()
     {
-        if(KitchenGameManager.Instance!=null)
+        if (KitchenGameManager.Instance != null)
             KitchenGameManager.Instance.OnGamePausedStateChanged += KitchenGameManager_OnGamePausedStateChanged;
     }
 
@@ -71,11 +78,17 @@ public class OptionsUI : MonoBehaviour
             Hide();
     }
 
-    public void Show()
+    public void Show(Action onCloseButtonAction)
     {
+        this.onCloseButtonAction = onCloseButtonAction;
+
         if (contentPanel != null)
             contentPanel.SetActive(true);
         else Debug.LogError($"{gameObject.name} | Content Panel | Is Null" % Colorize.Yellow % FontFormat.Bold);
+
+        if (soundEffectsButton != null)
+            soundEffectsButton.Select();
+        else Debug.LogError($"{gameObject.name} | Sound Effects Button | Is Null " % Colorize.Yellow % FontFormat.Bold);
     }
 
     public void Hide()

@@ -22,8 +22,9 @@ public class GamePauseUI : MonoBehaviour
         if (optionsButton != null)
             optionsButton.onClick.AddListener(() =>
             {
+                Hide();
                 if (OptionsUI.Instance != null)
-                    OptionsUI.Instance.Show();
+                    OptionsUI.Instance.Show(Show);
             });
         else Debug.LogError($"{gameObject.name} | Options Button | Is Null" % Colorize.Yellow % FontFormat.Bold);
     }
@@ -54,6 +55,10 @@ public class GamePauseUI : MonoBehaviour
         if (gameOverContent != null)
             gameOverContent.SetActive(true);
         else Debug.LogError($"{gameObject.name} | Game Over Content | Is Null " % Colorize.Yellow % FontFormat.Bold);
+
+        if (resumeButton != null)
+            resumeButton.Select();
+        else Debug.LogError($"{gameObject.name} | Resume Button | Is Null " % Colorize.Yellow % FontFormat.Bold);
     }
 
     private void Hide()
