@@ -13,7 +13,10 @@ public class MainMenuUI : MonoBehaviour
     {
         if (playButton == null) Debug.LogError("Play Button Is NUll");
         else
+        {
             playButton.onClick.AddListener(() => Loader.Load(Loader.Scene.GameScene));
+            playButton.Select();
+        }
 
         if (quitButton == null) Debug.LogError("QUit Button Is NUll");
         else
